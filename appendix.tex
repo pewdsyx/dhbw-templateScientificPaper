@@ -1,6 +1,6 @@
 \addcontentsline{toc}{chapter}{Anhang} %sorgt für eintrag ins inhaltsverzeichnis
 \chapter{Ergänzungen zur Forschungsfrage eins} \label{appendixFF1}
-In diesem Teil des Anhangs sind Ergänzungen zur Forschungsfrage zwei des Kapitels \vref{ff2} beschrieben.
+In diesem Teil des Anhangs sind Ergänzungen zur Forschungsfrage eins des Kapitels \vref{ff1} beschrieben.
 
 \section{Anforderungsdokument}\label{appendixAnforderung}
 
@@ -18,7 +18,18 @@ Ein Anforderungskatalog hat bestimmte Anforderungen, die an den Katalog gestellt
 	\item sortierbar/projezierbar (nach verschiedenen Kriterien, für verschiedene Stakeholder).
 \end{itemize}
 
-Die folgende Aufzählung beschreibt eine Vorlage für das Anforderungsdokument nach Quelle: Sie nutzt die Hilfsmittelsammlung \enquote{Volere}. Diese bietet im Themenbereich \enquote{requirements engineering} kostenpflichtig Dokumentenvorlagen an. Die beiden Bekanntesten sind die hier gezeigte \enquote{Volere Requirements Specification Template} und das kostenlose \enquote{Volere Atomic Requirement Template}, das umgangssprachlich \enquote{Snow Card} genannt wird. Die \enquote{Snow Card} (\vref{abb:volereSnowCard}) ist eine Karteikarte, die benutzt wird, um eine vollständige Aufnahme aller Informationen einer einzelnen Anforderung zu gewährleisten.\autocite[vgl.][]{VolereSnowCard} Die folgende Liste wurde in Anlehnung an die Quelle \cite{VolereRequirmentsSpecTemplate} erstellt.
+Die folgende Aufzählung beschreibt eine Vorlage für das Anforderungsdokument nach Quelle: Sie nutzt die Hilfsmittelsammlung \enquote{Volere}. Diese bietet im Themenbereich \enquote{requirements engineering} kostenpflichtig Dokumentenvorlagen an. Die beiden Bekanntesten sind die hier gezeigte \enquote{Volere Requirements Specification Template} und das kostenlose \enquote{Volere Atomic Requirement Template}, das umgangssprachlich \enquote{Snow Card} genannt wird. Die \enquote{Snow Card} (\vref{abb:volereSnowCard}) ist eine Karteikarte, die benutzt wird, um eine vollständige Aufnahme aller Informationen einer einzelnen Anforderung zu gewährleisten.\autocite[vgl.][]{VolereSnowCard} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{img/snowcard.pdf}
+	\caption{Volere Snow Card}
+	{\footnotesize Quelle: \cite{VolereSnowCard}}
+	\label{abb:volereSnowCard}
+	%		{\scriptsize \textit{Alle Rechte, einschließlich der Vervielfältigung, Veröffentlichung, Bearbeitung und Übersetzung bleiben der SV Informatik GmbH vorbehalten.}}
+\end{figure}
+
+Die folgende Liste wurde in Anlehnung an die Quelle \cite{VolereRequirmentsSpecTemplate} erstellt.
 
 \begin{minipage}{\linewidth}
 	\begin{itemize}\label{abb:volereReqSpec}
@@ -67,20 +78,10 @@ Die folgende Aufzählung beschreibt eine Vorlage für das Anforderungsdokument n
 	\end{itemize}
 \end{minipage}
 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.6]{img/snowcard.pdf}
-	\caption{Volere Snow Card}
-	{\footnotesize Quelle: \cite{VolereSnowCard}}
-	\label{abb:volereSnowCard}
-	%		{\scriptsize \textit{Alle Rechte, einschließlich der Vervielfältigung, Veröffentlichung, Bearbeitung und Übersetzung bleiben der SV Informatik GmbH vorbehalten.}}
-\end{figure}
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.45]{img/cloudreq.pdf}
-	\caption{Volere Snow Card}
+	\caption{Ebenen der \enquote{Cloud}-Anforderungsanalyse}
 	{\footnotesize Quelle: in Anlehnung an \cite{rimal_architectural_2011}}
 	\label{abb:cloudreq}
 	%		{\scriptsize \textit{Alle Rechte, einschließlich der Vervielfältigung, Veröffentlichung, Bearbeitung und Übersetzung bleiben der SV Informatik GmbH vorbehalten.}}
@@ -130,9 +131,79 @@ Hierbei ist zu beachten, dass das orange gefärbte die Funktionalitäten der \te
 \end{figure}
 
 \chapter{Ergänzungen zur Forschungsfrage zwei} \label{appendixFF2}
+In diesem Teil des Anhangs sind Ergänzungen zur Forschungsfrage zwei des Kapitels \vref{ff2} beschrieben.
 
+\section{Entscheidung über die Notwendigkeit eines \enquote{Business Case}}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.48]{img/entscheidungBC.pdf}
+	\caption{Notwendigkeit eines \enquote{Business Case}}
+	{\footnotesize Quelle: in Anlehnung an \cite[][S.29]{brugger_it_2009}}
+	\label{abb:entscheidungBC}
+	%		{\scriptsize \textit{Alle Rechte, einschließlich der Vervielfältigung, Veröffentlichung, Bearbeitung und Übersetzung bleiben der SV Informatik GmbH vorbehalten.}}
+\end{figure}
+
+\section{Vor-/Nachteile der internen beziehungsweise externen Erstellung eines \enquote{Business Case}}\label{appendixVorNachteileErstellungBC}
+
+\begin{table*}[h!]
+	\centering
+	\ra{1.3} %more space beetween rules
+	
+	\begin{tabular}{@{}ll@{}}\toprule[1.5pt]
+		
+		\textbf{Vorteile} & \textbf{Nachteile} \\ \midrule
+		
+		% below rules with content
+		Neutralität & Kein Wissenstransfer \\
+		Verfügbarkeit & Kosten, egal ob der \enquote{Business Case} rentabel ist\\
+		Effiziente Erstellung & hohe Kosten im Vergleich zur internen Erstellung \\
+		Glaubwürdigkeit & Abhängigkeit \\
+		Qualität & Verlust der firmenintern Standards \\
+		Innovation & \\
+		Schlichtung & \\
+		
+		\bottomrule[1.5pt]
+	\end{tabular}
+	
+	\caption{Überblick über die Vor/-Nachteile der externen Erstellung eines \enquote{Business Case}}
+	{\footnotesize Quelle: in Anlehnung an \cite[][S.34]{brugger_it_2009}}
+	\label{tab:externVorNachteile}
+	
+\end{table*}
+
+\begin{table*}[h!]
+	\centering
+	\ra{1.3} %more space beetween rules
+	
+	\begin{tabular}{@{}ll@{}}\toprule[1.5pt]
+		
+		\textbf{Vorteile} & \textbf{Nachteile} \\ \midrule
+		
+		% below rules with content
+		Wissensaufbau & Verfügbarkeit \\
+		Qualität & Effizienzverlust bei rein technischen/operativen Mitarbeitern \\
+		\enquote{Teamwork} & Glaubwürdigkeit \\
+		Standardisierung & Qualitätskontrolle durch \enquote{Controlling}-Division \\
+		
+		\bottomrule[1.5pt]
+	\end{tabular}
+	
+	\caption{Überblick über die Vor/-Nachteile der internen Erstellung eines \enquote{Business Case}}
+	{\footnotesize Quelle: in Anlehnung an \cite[][S.34]{brugger_it_2009}}
+	\label{tab:internVorNachteile}
+	
+\end{table*}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.48]{img/chronoBC.pdf}
+	\caption{Chronologische Abfolge der Entwicklungsphase eines \enquote{Business Case}}
+	{\footnotesize Quelle: in Anlehnung an \cite[][]{herman_is_2009}}
+	\label{abb:entwicklungBC}
+	%		{\scriptsize \textit{Alle Rechte, einschließlich der Vervielfältigung, Veröffentlichung, Bearbeitung und Übersetzung bleiben der SV Informatik GmbH vorbehalten.}}
+\end{figure}
 
 \chapter{Ergänzungen zur Forschungsfrage drei} \label{appendixFF3}
-
+In diesem Teil des Anhangs sind Ergänzungen zur Forschungsfrage drei des Kapitels \vref{ff3} beschrieben.
 
