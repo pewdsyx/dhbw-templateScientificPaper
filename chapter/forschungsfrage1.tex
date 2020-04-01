@@ -96,7 +96,7 @@ Um die Stärken und Vorteile der \textsc{Docker}-Container, brauchen diese eine 
 	\label{tab:definitionen}
 	
 \end{table*}
-
+Eine detailreiche Übersicht der Architektur der oben beschrieben Konzepte ist im Anhang \vref{abb:k8sArchInteraktion} zusehen. Diese beschreibt das Zusammenwirkung der einzelnen Komponenten.
 % werden zu viele Grundlagen --> wird eine Definition des Deployments benötigt ->
 % inline definieren.
 %\subsection{\enquote{Deployment}} \label{defDeployment}
@@ -108,7 +108,27 @@ Um die Stärken und Vorteile der \textsc{Docker}-Container, brauchen diese eine 
 \subsection{Methodologie}
 
 \subsection{Aufbau einer \textsc{OpenShift}-Labor-Umgebung}
-Nachfolgend wird der Aufbau einer \textsc{OpenShift}-Labor-Umgebung mit \enquote{single node}-Architektur beschrieben, d. h. es ist nur eine \enquote{worker node} im \textsc{OpenShift}-Cluster vorhanden.
+Nachfolgend wird der Aufbau einer \textsc{OpenShift}-Labor-Umgebung mit \enquote{single node}-Architektur beschrieben, d. h. es ist nur eine \enquote{worker node} im \textsc{OpenShift}-Cluster vorhanden. Dieses wird auf einem \textsc{Ubuntu}-System in der Version 18.04 installiert. Der folgende Quelltext \vref{lst:openShift} beschreibt die Terminal-Eingaben:
+
+\begin{lstlisting}[language=sh, caption={Installation des \textsc{OpenShift}-Clusters}, label=lst:openShift]
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update && sudo apt -y install docker-ce
+docker version
+sudo usermod -aG docker $USER
+wget $LINK
+tar xvf openshift-origin-client-tools*.tar.gz
+cd openshift-origin-client*/
+sudo mv  oc kubectl  /usr/local/bin/
+oc version
+cat << EOF | sudo tee /etc/docker/daemon.json 
+{
+"insecure-registries" : [ "172.30.0.0/16" ]
+}
+EOF
+sudo systemctl restart docker
+oc cluster up
+\end{lstlisting}
 
 \subsection{Prozessmodellierung anhand der Anwendung \textsc{Camunda}}
 \section{Ergebnis der Forschungsfrage eins}
