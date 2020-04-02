@@ -105,12 +105,14 @@ Eine detailreiche Übersicht der Architektur der oben beschrieben Konzepte ist i
 
 
 \section{Konzeption eines container-basierten, automatisierten \enquote{Deployments}}
+Dieses Teilkapitel beschreibt den Aufbau einer \textsc{OpenShift}-Labor-Umgebung, um das Verhalten von \textsc{OpenShift} zu testen. Des Weiteren wird eine Prozessmodellierung des automatisierten \enquote{Deployments} anhand einer Beispielanwendung \textsc{Camunda} erläutert. Dies ist gleichzeitig die Testapplikation, die in der \ac{SVI} benutzt wird, um das automatisierte \enquote{Deployment} von Container-Anwendungen zu untersuchen. 
 \subsection{Methodologie}
+Wie bin ich vorgegangen?
 
-\subsection{Aufbau einer \textsc{OpenShift}-Labor-Umgebung}
+\subsection{Aufbau und \enquote{Deployment} eines \textsc{OpenShift}-Labors}
 Nachfolgend wird der Aufbau einer \textsc{OpenShift}-Labor-Umgebung mit \enquote{single node}-Architektur beschrieben, d. h. es ist nur eine \enquote{worker node} im \textsc{OpenShift}-Cluster vorhanden. Dieses wird auf einem \textsc{Ubuntu}-System in der Version 18.04 installiert. Der folgende Quelltext \vref{lst:openShift} beschreibt die Terminal-Eingaben:
 
-\begin{lstlisting}[language=sh, caption={Installation des \textsc{OpenShift}-Clusters}, label=lst:openShift]
+\begin{lstlisting}[language=bash, caption={Installation des \textsc{OpenShift}-Clusters}, label=lst:openShift]
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt update && sudo apt -y install docker-ce
@@ -120,7 +122,7 @@ wget $LINK
 tar xvf openshift-origin-client-tools*.tar.gz
 cd openshift-origin-client*/
 sudo mv  oc kubectl  /usr/local/bin/
-oc version
+oc version 
 cat << EOF | sudo tee /etc/docker/daemon.json 
 {
 "insecure-registries" : [ "172.30.0.0/16" ]
@@ -129,6 +131,10 @@ EOF
 sudo systemctl restart docker
 oc cluster up
 \end{lstlisting}
+
+Das Konzept dieses \enquote{Shell}-Skripts \vref{lst:openShift} ist es, zuerst die notwendigen Abhängigkeiten und danach die \textsc{OpenShift}-Anwendungen zu installieren. So wird in den Zeilen eins bis drei die notwendigen Voraussetzungen geschaffen, um die \textsc{Docker}-Umgebung zu installieren. Zuerst wird der \textsc{GPG}\footnote{\enquote{GnuPG is a complete and free implementation of the OpenPGP standard as defined by RFC4880 (also known as PGP). GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management system, along with access modules for all kinds of public key directories.} Quelle: \cite{the_people_of_the_gnupg_project_gnu_2020}}-Schlüssel zum lokalen Schlüsselbund hinzugefügt, danach kann die Anwendung \textsc{Docker} mit dem \ac{APT}-Programm heruntergeladen und installiert werden. Danach wird getestet, ob die Installation von \textsc{Docker} erfolgreich war und der eigene Benutzer wird der Gruppe \enquote{docker} hinzugefügt. Dies wird benötigt um dem eigenen Benutzer die Steuerung der Software \textsc{Docker} zu erlauben. Die Zeilen sechs bis neun installieren \textsc{Kubernetes} und \textsc{OpenShift} (in der \enquote{Community}-Variante). Sehr wichtig sind die Anpassungen, die in den Zeilen elf bis fünfzehn vorgenommen werden: Sie fügen einen Eintrag \lstinline[language=bash]|"insecure-registries" : [ "172.30.0.0/16" ]| in die Datei \lstinline[language=bash]|/etc/docker/daemon.json| ein. Dies erlaubt es \textsc{Docker} auf unsichere Verzeichnisse zuzugreifen; dadurch kann \textsc{OpenShift} lokal Container-\enquote{Images} im Cache speichern, um diese schneller wiederzuverwenden. Schließlich wird ein Cluster in \enquote{default}-Konfiguration zur Kontrolle der Funktionsfähigkeit mit \lstinline[language=bash]|oc cluster up| erstellt. Dies ist unter \lstinline[language=HTML, breaklines=true]|http://127.0.0.1:8443/console| als Web-Konsole erreichbar.
+\par
+Dokumentation eines Test-\enquote{Deployments}, um die Funktionalität zu illustrieren. 
 
 \subsection{Prozessmodellierung anhand der Anwendung \textsc{Camunda}}
 \section{Ergebnis der Forschungsfrage eins}

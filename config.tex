@@ -103,7 +103,10 @@
 	breaklines=true, 
 	breakatwhitespace=true,
 	showstringspaces=false,
-	escapechar=@@}
+	escapeinside={@@},
+	keywordstyle=\bfseries,
+	postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookrightarrow\space}}
+	}
 
 % LISTINGS: eigene Programmiersprache; bei morekeywords die zusätzlichen einfügen
 \lstdefinelanguage{PLSQL}{
