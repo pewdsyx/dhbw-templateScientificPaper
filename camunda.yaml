@@ -1,0 +1,95 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-policen-demo
+  namespace: pjt-policen-demo
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-demo
+  namespace: pjt-policen-demo
+spec:
+  selector:
+    matchLabels:
+      app: app-policen-demo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-policen-demo
+    spec:
+      serviceAccountName: sa-policen-demo
+      containers:
+        - name: policenkopie-ep-demo
+          image: lxbpm300e.s-v.loc:5443/policenkopie:2.1.0-SNAPSHOT_build_138
+          env:
+            - name: DE_SVI_SERVICE_INKASSOMAHNINFOPORT2_ENDPOINT_URI
+              value: http://lxbpm300e.s-v.loc:10702/mock/InkassoMahnInfoPortType2Binding
+            - name: DE_SVI_SERVICE_DOKUMENTINFORMATION1_ENDPOINT_URI
+              value: http://lxbpm300e.s-v.loc:10701/mock/DokumentinformationPortType1
+            - name: DE_SVI_SERVICE_VERTRAGPRUEFUNG1_ENDPOINT_URI
+              value: http://lxbpm300e.s-v.loc:10703/mock/VertragPruefungPortType1Binding
+            - name: DE_SVI_SERVICE_DRUCKAUFTRAGPORT_ENDPOINT_URI
+              value: http://lxbpm300e.s-v.loc:10704/mock/DruckauftragServicePortType1Binding
+            - name: DE_SVI_SERVICE_PRODUKTAUSKUNFT1_ENDPOINT_URI
+              value: http://lxbpm300e.s-v.loc:10705/mock/ProduktAuskunftPortType1Binding
+            - name: DE_SVI_SERVICE_PARTNERPRUEFUNGASYNCHRON_ENDPOINT_URI
+              value: http://lxbpm300e.s-v.loc:10709/mock/PartnerPruefungAsynchronPortType2Binding
+            - name: DE_SVI_SERVICE_PROZESSAKTIVITAET2_ENDPOINT_URI
+              value: http://lxbpm300e.s-v.loc:10706/mock/ProzessaktivitaetPortType2Binding
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:oracle:thin:@scsoa30e:1521:CDVIXX10
+            - name: SPRING_DATASOURCE_USERNAME
+              value: cdviewS
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: cdview
+            - name: CAMUNDA_BPM_DATABASE_TYPE
+              value: oracle
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 1
+              memory: 1Gi
+            requests:
+              cpu: "0.5"
+              memory: 500Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    description: Exposes and load balances the application pods
+  name: svc-policen-demo
+  namespace: pjt-policen-demo
+spec:
+  ports:
+    - name: web
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: app-policen-demo
+  sessionAffinity: None
+  type: ClusterIP
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: svc-policen-demo
+  namespace: pjt-policen-demo
+spec:
+  host: svc-policen-demo-pjt-policen-demo.apps.ocp4.cntr.i.sv.loc
+  port:
+    targetPort: web
+  subdomain: ""
+  to:
+    kind: Service
+    name: svc-policen-demo
+    weight: 100
+  wildcardPolicy: None
