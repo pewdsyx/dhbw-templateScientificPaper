@@ -5,7 +5,7 @@ Gliederung des Vorgehens
 ## Forschungsfrage eins
 
 * Anforderungsanalyse
-* Definieren des statement of needs
+  * Definieren des statement of needs
   * Definieren der Stakeholder
   * Befragung des Fachbereichs durch eine offene Fragstellung
     * Warum offene Fragestellung und keine geschlossenen Fragen
@@ -19,7 +19,7 @@ Gliederung des Vorgehens
 * Aus eins und zwei: Prozessmodilierung
   * Erkenntnisse aus eins und zwei nutzen, um PModell zu erstellen
   * Wie habe ich das gemacht?
-  * Warum erstmal Tool unabhängig 
+  * Warum erstmal Tool unabhängig
   * Sequenzdiagramm: Warum nutze ich das als Prozessablauf?
     * Probleme damit/Gemeinsamkeiten
     * Warum mache ich es trotzdem -> Übertragung Kommunikation zwischen Klasen zu Prozessen
@@ -30,6 +30,8 @@ Gliederung des Vorgehens
 ## Forschungsfrage zwei
 
 tba
+
+* Hindernisse bzgl. Business Case nach Literatur
 
 ## Forschungsfrage drei
 
