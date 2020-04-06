@@ -1,6 +1,6 @@
 # Methodologie
 
-Gliederung des Vorgehens
+Gliederung des Vorgehens [Markdown Cheat](https://duckduckgo.com/?t=ffab&q=markdown+cheatsheet&ia=answer&iax=1) + [Methodology Cheat](https://www.scribbr.co.uk/thesis-dissertation/methodology/)
 
 ## Forschungsfrage eins
 
