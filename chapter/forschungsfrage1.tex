@@ -69,7 +69,7 @@ Initial entwickelte \cite{canonical_ltd_linux_2020} die \ac{LXC}; \textsc{Docker
 \par 
 Um die Stärken und Vorteile der \textsc{Docker}-Container, brauchen diese eine Netzwerkanbindung. Nur mit dieser können Container in der Produktion eingesetzt und eine Orchestrierung\footnote{Der Begriff ist aus der Musik abgeleitet: flexibles Kombinieren mehrerer Services oder Dienste zu einer sinnvollen Konzeption (Komposition), die einen Geschäftsprozess beschreibt. Quelle: Duden.de} möglich gemacht werden. Für die Orchestrierung von Container-Anwendungen wird eine weitere Technologie benötigt, die von \cite{google_llc_production-grade_2020} entwickelt und als \enquote{open source} veröffentlicht wurde: \ac{K8s}\footnote{\enquote{is an open-source system for automating deployment, scaling, and management of containerized applications.} (\cite{google_llc_production-grade_2020})}. Die Semantik des Wortes \textsc{Kubernetes} bedeutet auf Griechisch \enquote{Loste/Steuermann}. Diese Metapher beschreibt die Hauptaufgaben von \ac{K8s} zu treffend; es \enquote{verdeckt die Hardwareinfrastruktur und stellt ihr gesamtes Rechenzentrum als eine einzige, enorme Rechenressource dar. Dadurch können Sie ihre Softwarekomponenten	bereitstellen und ausführen, ohne sich darum zu kümmern, welche Server konkret unterhalb dieser Schicht laufen. Bei der Bereitstellung von Anwendungen mit mehreren Komponenten wählt \textsc{Kubernetes} für jede dieser Komponenten einen Server aus, stellt sie bereit und ermöglicht es ihr, die anderen Komponenten zu finden und mit ihnen zu kommunizieren.}\autocite[][S.\,4]{luksa_kubernetes_2018} Der Nutzen von \ac{K8s} wird bei einer großen Cloudanbieterin, wie \ac{AWS} u. a., maximiert, da es den Entwicklerinnen ermöglicht die Ausführung und Bereitstellung von Anwendungen entkoppelt von den Systemadministratorinnen zu betreiben.\autocite[vgl.][S.\,4]{luksa_kubernetes_2018} Eine grundlegende Übersicht einer \textsc{Kubernetes}-Architektur ist im Anhang \vref{abb:k8sArch} zu finden. 
 \par
-\ac{K8s} führt einige Begrifflichkeiten ein, die nachfolgend einer Definition benötigen. Diese werden im weiteren Verlauf dieser Arbeit benötigt, jedoch konzentriert auf die Forschungsfrage eins.
+\ac{K8s} führt einige Begrifflichkeiten ein, die nachfolgend einer Definition (siehe Tabelle \vref{tab:definitionenK8s}) benötigen. Diese werden im weiteren Verlauf dieser Arbeit benötigt, jedoch konzentriert auf die Forschungsfrage eins.
 
 \begin{table*}[h!]
 	\centering
@@ -93,7 +93,7 @@ Um die Stärken und Vorteile der \textsc{Docker}-Container, brauchen diese eine 
 	
 	\caption{Definition der \enquote{\ac{K8s}}-Begrifflichkeiten}
 	{\footnotesize{Quelle: \cite[][S.\,10-14]{caban_architecting_2019}}}
-	\label{tab:definitionen}
+	\label{tab:definitionenK8s}
 	
 \end{table*}
 Eine detailreiche Übersicht der Architektur der oben beschrieben Konzepte ist im Anhang \vref{abb:k8sArchInteraktion} zusehen. Diese beschreibt das Zusammenwirkung der einzelnen Komponenten.
@@ -105,12 +105,12 @@ Eine detailreiche Übersicht der Architektur der oben beschrieben Konzepte ist i
 \section{Anforderungsanalyse des zu implementierenden Prozess}
 % Anforderungskatalog \vref{tab:anforderungslisteFF1}
 % Formulierungshilfen für Anforderungen \autocite[][]{rupp_formulierungsregel_2020}
-% TODO: Anforderungsanalyse schreiben
 Das \enquote{statement of needs} ist, wie in Kapitel \vref{kap:methodikAnfAnalyse} beschrieben, ein Wunsch beziehungsweise Anspruch an das zu entwickelnde System (hier: ein Prozess): Es sollen Container-Anwendungen automatisiert auf die \textsc{OpenShift}-Umgebung verteilt werden. Dies soll von der dafür zuständigen Abteilung im Unternehmen übernommen werden, d.\,h. die Verantwortung dieses Prozesses wird übergeben. Ziel ist es, Aufgaben und Verantwortlichkeiten so zu verteilen, dass sie dem Aufbau- sowie Ablauforganisation entsprechen. Die Entwicklungsabteilungen/-teams möchten weiterhin nicht mehr für die Verteilung der Container-Anwendungen verantwortlich sein. Des Weiteren sprechen rechtliche Aspekte gegen dies, dass die Entwicklung auf Dauer Anwendungen in die \ac{PROD} verteilt. Bei näherer Betrachtung der oben genannten Gründe ist folgendes festzustellen: es sprechen rechtliche Voraussetzung und unternehmens-organisatorische Aspekte dafür, hier ein weiteres Vorgehen anzustreben. Alleinig durch die rechtlichen Aspekte muss eine Veränderung des IST-Zustands angestrengt werden, damit ist das Vorgehen begründet und die Ermittlung der Projektbeteiligten (\enquote{stakeholder}) kann durchgeführt werden.
 \par
 Die Projektbeteiligten sind im engeren Sinn die Fachbereiche (also Kunden der Anwendung), die Entwicklungsteams und die \enquote{Deployment}-Abteilung. Im weiteren Sinne könnten die Geschäftsführung der \ac{SVI}, der Vorstand der \ac{SV}, die Kunden der \ac{SV}, sowie die Kunden/der Vorstand der \ac{SVS} ein begründetes Interesse an diesen Projekt haben. So hat der Fachbereich Interesse an einem funktionsfähigen System, die Entwicklungsteams an einem häufigen (annäherungsweise kontinuierlichem) \enquote{Deployment} und die \enquote{Deployment}-Abteilung an einem hoch automatisiertem und revisionskonformen Prozess. Dies sind nur einige Aspekte, die bei weitem nicht alle Gründe des Interesses abdecken. Es werden hier nur die \enquote{stakeholder} im engeren Sinn weiter betrachtet, da diese Arbeit sich mit der Modellierung eines automatisierten Prozesses im Bereich der Entwicklung, der wirtschaftlichen Betrachtung und der rechtlichen Sicherung dieses beschäftigt. Der Fokus liegt auf der Modellierung des Prozesses und mit diesem deckt es die engeren Projektbeteiligten ab. 
 \par
-Nachfolgend wird der automatisierte \enquote{Deployment}-Prozess zur Verteilung von Containern als \textit{Prozess} bezeichnet. Zur besseren Übersichtlichkeit ist im Anhang \vref{tab:anforderungslisteFF1} ein Anforderungskatalog zu finden.
+Nachfolgend wird der automatisierte \enquote{Deployment}-Prozess zur Verteilung von Containern als \textit{Prozess} bezeichnet. Zur besseren Übersichtlichkeit ist im Anhang \vref{tab:anforderungslisteFF1} ein Anforderungskatalog zu finden. 
+% TODO: Definieren welche Anforderungen betrachtet werden --> wahrscheinlich nur die funktionalen Anforderungen ...
 
 \section{Konzeption eines container-basierten, automatisierten \enquote{Deployments}}
 Dieses Teilkapitel beschreibt den Aufbau einer \textsc{OpenShift}-Labor-Umgebung, um das Verhalten von \textsc{OpenShift} zu testen. Des Weiteren wird eine Prozessmodellierung des automatisierten \enquote{Deployments} anhand einer Beispielanwendung \textsc{Camunda} erläutert. Dies ist gleichzeitig die Testapplikation, die in der \ac{SVI} benutzt wird, um das automatisierte \enquote{Deployment} von Container-Anwendungen zu untersuchen. Abschließend wird eine generische Konfigurationsdatei entwickelt, um Applikationen ins \textsc{OpenShift}-Cluster zu verteilen.
@@ -156,8 +156,32 @@ test_connection blog-lab.127.0.0.1.nip.io @\label{lst:line:testConn}@
 
 Nach Abschluss des Tests wird die Applikation mit \lstinline[language=sh]|oc delete all --selector app=blog| wieder gelöscht.
 
-\subsection{Modellierung einer generischen \enquote{Set of Resources}-Datei}
+\subsection{Modellierung einer \enquote{Deployment}-Konfigurationsdatei}
 % TODO: Modellierung einer generischen Datei
+Um eine Verteilung der Container-Anwendung auf dem \textsc{OpenShift}-Cluster durchzuführen, benötigt das System eine Konfigurationsdatei, die als \ac{API}-Objekt an \textsc{OpenShift} übergeben wird. Dabei definiert diese den gewünschten Zustand einer bestimmten Komponente der Anwendung als \enquote{pod}\footnote{siehe Tabelle \vref{tab:definitionenK8s}}-Vorlage.\autocite[vgl.][Application\,$\rightarrow$\,Deployments]{red_hat_inc_okd_2019} Diese Datei stellt, als alleinige Quelle (\ac{SPOT}), alle notwendigen Informationen bereit, die die Anwendungen \textsc{OpenShift} benötigt, um eine funktionsfähige Datei in dem ausgewählten Projekt des Clusters bereitzustellen. Dies ist der erste Unterschied zum klassischen \enquote{Deployment} bei dem alle Quelldateien verteilt werden müssen.\autocite[vgl.][]{dearle_software_2007} Dabei ist die Konfigurationsdatei deklarativ\footnote{Programmierparadigma: im Gegensatz dazu gibt es das imperative Vorgehen, dass das \textit{Was} in welcher Reihenfolge zu tun ist beschreibt.} beschreiben, d.\,h. sie beschreibt \textit{was} \textsc{OpenShift} mit der angegeben Komponente machen soll.
+
+Es gibt zwei verschiedene Ausprägungen der Konfigurationsdatei: \enquote{DeploymentConfig} und \enquote{Deployment}. Nachfolgend werden die Ziele, der Nutzen und ein Beispiel der Ausprägung beschrieben. Die \enquote{DeploymentConfig}-Variante ist von \textsc{Red Hat} für \textsc{OpenShift} entwickelt worden, um eine erweiterte Unterstützung für die Softwareentwicklung und den Lebenszyklus des \enquote{Deployments} zu unterstützen. Damit hat \textsc{Red Hat} ein eigenes Konzept entwickelt, wie die Verteilung von Software aussehen kann. Dieses Konzept bietet folgende Eigenschaften, die verschiedene Nutzungsmöglichkeiten ermöglichen:\autocite[vgl.][Application\,$\rightarrow$\,Deployments]{red_hat_inc_okd_2019}
+\begin{enumerate}
+	\item \enquote{A DeploymentConfig, which is a template for running applications.}
+	\item \enquote{Triggers that drive automated deployments in response to events.}
+	\item \enquote{User-customizable deployment strategies to transition from the previous version to the new version. A strategy runs inside a Pod commonly referred as the deployment process.}
+	\item \enquote{A set of hooks (lifecycle hooks) for executing custom behavior in different points during the lifecycle of a deployment.}
+	\item \enquote{Versioning of your application in order to support rollbacks either manually or automatically in case of deployment failure.}
+	\item \enquote{Manual replication scaling and autoscaling.} 
+\end{enumerate}
+Allgemein definiert das \enquote{DeploymentConfig}-Objekt die Anzahl der Replikationen, beschreibt die Auslöser (\enquote{trigger}) für die automatische Erstellung von neuen \enquote{Deployments}; die Strategie, mit der die Übergange zwischen verschiedenen Versionsständen verwaltet sind, und Lebenszyklus-\enquote{Hooks}\footnote{Funktionen, die beim Eintreten eines bestimmten Events automatisch ausgelöst werden}. Wenn eine neue Verteilung von Komponenten angestoßen wird, aktiviert sich ein spezieller \enquote{pod}, um die die Verteilung zu überwachen und zu betreuen. Dieser fährt die alten Replikationen herunter, aktiviert neue und startet die \enquote{hooks}. Wichtig ist, dass er die alten Replikationen behält, um ein schnelles \enquote{rollback}, also eine Wiederherstellung des Zustands vor der aktuellen Verteilung, zu ermöglichen. Der Verteilungs-\enquote{pod} bleibt für unbestimmte Zeit im Cluster, damit die Logdatei nicht gelöscht wird. 
+
+\lstinputlisting[language=yaml, caption={Beispiel einer \enquote{DeploymentConfig}-Datei}, label=lst:demoDeploymentConfig]{resources/listings/deploymentConfigDemo.yaml}
+
+Dieser Quellcode \vref{lst:demoDeploymentConfig}\autocite[vgl.][Application\,$\rightarrow$\,Deployments]{red_hat_inc_okd_2019} zeigt eine Ausprägung der \enquote{DeploymentConfig}. Die Zeilen 10\,ff. beschreibt typische \enquote{trigger}, die bei einem gewissen Ereignis ausgelöst werden. Die Bezeichner beschreiben die Funktionsweise ausreichend. Die Verteilungsstrategie wird durch die Zeilen 20\,f. eingestellt. Hier wird die Strategie \enquote{rolling} verwendet, d.\,.h die einzelnen \enquote{pods} einer/mehrerer \enquote{worker node(s)} werden während dem laufenden Betrieb unbemerkt gegen die neue Version getauscht -- die Endanwenderin bekommt davon nichts mit. Im Gegensatz zu der Variante \enquote{DeploymentConfig} gibt es die \acl{K8s}-Version \enquote{Deployment}, die kompatibel mit \textsc{OpenShift} ist. Sie werden als Nachkomme der \textsc{OpenShift}-Variante (\enquote{DeploymentConfig})\autocite[vgl.][Application\,$\rightarrow$\,Deployments]{red_hat_inc_okd_2019} bezeichnet. Die \enquote{Deployment}-Ausprägung beschreibt, wie die \enquote{DeploymentConfig}, den gewünschten Zustand einer Anwendungskomponente in Form einer \enquote{pod}-Vorlage. Der Quellcode \vref{lst:demoDeployment}\autocite[vgl.][Application\,$\rightarrow$\,Deployments]{red_hat_inc_okd_2019} erzeugt bei der Ausführung im \textsc{OpenShift}-Cluster eine Replikation des \enquote{hello-openshift}-\enquote{pod}.
+
+\lstinputlisting[language=yaml, caption={Beispiel einer \enquote{Deployment}-Datei}, label=lst:demoDeployment]{resources/listings/deploymentDemo.yaml}
+
+Dabei spezifizieren die Zeilen 16-17, welches \textsc{Docker}-Abbild als Container geladen wird. Die Zeile 19 gibt den Port 80 für die Kommunikation innerhalb des \enquote{pod} frei.
+\par
+<Entscheidung/Begründung warum DC/D; begründet durch tatsächlichen Vergleich und Vorschlag OKD>
+
+%\lstinputlisting[language=yaml, caption={initialer Entwurf der Konfigurationsdatei für \textsc{Camunda}}, label=lst:deploymentCamunda]{resources/listings/camundaReadyToBePublished.yaml}
 
 \subsection{Prozessmodellierung anhand der Anwendung \textsc{Camunda}}
 % TODO: Prozessmodellierung schreiben
