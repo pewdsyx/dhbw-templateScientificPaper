@@ -141,6 +141,7 @@ Hierbei ist zu beachten, dass das orange gefärbte die Funktionalitäten der \te
 	%		{\scriptsize \textit{Alle Rechte, einschließlich der Vervielfältigung, Veröffentlichung, Bearbeitung und Übersetzung bleiben der SV Informatik GmbH vorbehalten.}}
 \end{figure}
 
+% TODO: befüllen
 \section{Anforderungskatalog der Forschungsfrage eins}
 Die Klassifizierung beschreibt die Wichtigkeit (gering, mittel, hoch) im Kontext des
 zu implementierenden Prozesses und die Nummer dient der besseren Identifizierbarkeit der jeweiligen Anforderung.
@@ -169,6 +170,14 @@ zu implementierenden Prozesses und die Nummer dient der besseren Identifizierbar
 % LISTING
 \lstinputlisting[language=sh, caption={Funktion zum Testen, ob eine Webseite verfügbar ist}, label=lst:testConnection]{resources/listings/testConnection.sh}
 
+\clearpage
+
+\section{Entwurf einer Konfigurationsdatei durch die Entwicklerinnen}
+\lstinputlisting[language=yaml, caption={Entwurf einer \enquote{Deployment}-Datei für \textsc{Camunda}}, label=lst:entwurfCamunda]{resources/listings/camundaReadyToBePublished.yaml}
+
+Dabei stellen alle Zeichenketten mit dem Muster \enquote{\textit{\$Bezeichner\_}} ein Platzhalter dar. Aus Gründen des Schutzes der Infrastruktur der \ac{SVI}/\ac{SV} ist es nicht gestattet die wirklichen Endpunkte der Webservices im Klartext abzubilden -- sie unterliegen dem Betriebsgeheimnis.
+
+\clearpage
 \chapter{Ergänzungen zur Forschungsfrage zwei} \label{appendixFF2}
 In diesem Teil des Anhangs sind Ergänzungen zur Forschungsfrage zwei des Kapitels \vref{ff2} beschrieben.
 

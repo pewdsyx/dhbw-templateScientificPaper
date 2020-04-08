@@ -16,6 +16,8 @@
       1. Design
       2. Features
 3. Entscheidung/Begründung, warum DC oder D
-4. Analyse des Deployment "Camunda" --> bessere Idee mit dem Einbinden überlegen
+4. Analyse des Deployment "Camunda"
 5. Algorithmus zur Generierung eines D oder DC
-6. Ableitung einer generischen Version der Konfigurationsdatei
+   1. Template bei DC
+   2. Skript bei D
+6. Ableitung einer generischen Version der Konfigurationsdatei (--> Template?)
