@@ -208,7 +208,7 @@ Für die Generierung ist es wichtig ein Grundgerüst der Konfigurationsdatei zu 
 	$\langle$Zuweisung$\rangle$ ::= "="
 	$\langle$Wert$\rangle$ ::= $\langle$Zeichenkette$\rangle$
 	$\langle$Gruppe$\rangle$ ::= "$[$" $\langle$Zeichenfolge$\rangle$ "$]$"
-	$\langle$Zeichenfolge$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$ $\langle$Zeichenfolge$\rangle$
+	$\langle$Zeichenfolge$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$ | $\langle$Grossbuchstaben$\rangle$ $\langle$Zeichenfolge$\rangle$
 	$\langle$Zeichenkette$\rangle$ ::= $\lambda$ | $\langle$Zeichen$\rangle$ | $\langle$Zeichen$\rangle$ $\langle$Zeichenkette$\rangle$
 	$\langle$Grossbuchstaben$\rangle$ ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | 
 	$\langle$Zeichen$\rangle$ ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "_" | "/" | "-" | ":" | "." | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
@@ -219,11 +219,18 @@ Ein Beispiel einer validen Übergabedatei ist im Anhang \vref{lst:bspUbergabe} z
 	\caption{Generierung der Konfigurationsdatei aus einer \ac{K-V}-Datei}\label{algo:configGenerierung}
 	
 	\begin{algorithmic}
-		\Function{Test}{a,b}
-			\State $m \gets a + b$
-		\EndFunction
+	\Procedure{generateDeploymentConfig}{pathToKVFile}
+		\State path $\gets$ pathToKVFile
+		\State map$[\quad]$$[\quad]$ \Comment{Map with a key and a value, e.g. a array of lines}
+		\State lines$[\quad]$ $\gets$ \Call{ReadFileByLines}{path}
 		
-		\Call{Test}{d,e} \Comment{Aufruf der Test-Funktion}
+		\ForAll{lines$[\quad]$ as line}
+			\If{line like \Call{regEx}{"$\backslash[\{1\}([A-Z]+)\backslash]\{1\}$"}}
+				\State Test
+			\EndIf
+		\EndFor
+		
+	\EndProcedure
 	\end{algorithmic}
 
 \end{algorithm}
