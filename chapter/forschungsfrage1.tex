@@ -197,10 +197,21 @@ Eine Anforderung der Abteilung \ac{IE2} ist es, die Konfigurationsdatei über ei
 	\item Eine einheitliche Übergabedatei soll von den Entwicklungsteams in einer Versionsverwaltung abgelegt werden. Die Datei ist nach Vorgaben der Abteilung \ac{IE2} aufgebaut.
 	\item Danach soll aus dieser Datei die Konfigurationsdatei erzeugt werden.
 	\item Diese wird durch \textsc{OpenShift} validiert, bevor sie ins Cluster geladen wird.
-	\item Nun steht die Konfigurationsdatei bereit, um die Verteilung der, in dieser Datei spezifizierten, Komponenten durchzuführen beziehungsweise sie beschreibt was verteilt wird.
+	\item Das Ergebnis ist die vollständige Konfigurationsdatei, die die Komponenten beschreibt, die verteilt werden sollen.
 \end{enumerate}
 
-Für die Generierung ist es wichtig ein Grundgerüst der Konfigurationsdatei zu haben. Dieses ist im Anhang \vref{lst:grundConfig} mit beispielhaften Werten zu sehen. Zweck des Grundaufbau ist es, bei der Generierung die fehlenden Informationen möglichst leicht zu integrieren. Dabei hilft es, wenn ein Grundstruktur des Ergebnisses vorhanden ist. 
+Für die Generierung ist es wichtig ein Grundgerüst der Konfigurationsdatei zu haben. Dieses ist im Anhang \vref{lst:grundConfig} mit beispielhaften Werten zu sehen. Zweck des Grundaufbau ist es, bei der Generierung die fehlenden Informationen möglichst leicht zu integrieren. Dabei hilft es, wenn eine Grundstruktur des Ergebnisses vorhanden ist. Der Aufbau der zulässigen Wortfolgen in der Übergabedatei ist nachfolgend in der Quellcode-Darstellung \vref{lst:bnfDatei} als \ac{BNF}\footnote{\enquote{Using BNF it is possible to specify which sequences of symbols constitute a syntactically valid program in a given language. (The question of semantics--i.e, what such valid strings of symbols mean--must be specified separately.)}\autocite[][]{mccracken_backus-naur_2003}} beschrieben.
+
+\begin{lstlisting}[language=html, caption={\ac{BNF} der Übergabedatei}, label=lst:bnfDatei, mathescape=true]
+	$\langle$Zeile$\rangle$ ::= $\langle$Schluessel$\rangle$ $\langle$Zuweisung$\rangle$  $\langle$Wert$\rangle$ $\langle$EOL$\rangle$ | $\langle$Gruppe$\rangle$ $\langle$EOL$\rangle$
+	$\langle$Schluessel$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$
+	$\langle$Zuweisung$\rangle$ ::= "="
+	$\langle$Wert$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$
+	$\langle$Gruppe$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$
+	$\langle$Grossbuchstaben$\rangle$ ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" 
+\end{lstlisting}
+
+Nachfolgend beschreibt der Algorithmus \vref{algo:configGenerierung} die Logik zur Generierung einer Konfigurationsdatei. Dieser ist absichtlich in Pseudocode verfasst, um den Fokus auf die Logik zu setzen und nicht auf Besonderheiten einer Programmiersprache.
 
 \begin{algorithm}
 	\caption{Generierung der Konfigurationsdatei aus einer \ac{K-V}-Datei}\label{algo:configGenerierung}
