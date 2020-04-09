@@ -204,14 +204,16 @@ Für die Generierung ist es wichtig ein Grundgerüst der Konfigurationsdatei zu 
 
 \begin{lstlisting}[language=html, caption={\ac{BNF} der Übergabedatei}, label=lst:bnfDatei, mathescape=true]
 	$\langle$Zeile$\rangle$ ::= $\langle$Schluessel$\rangle$ $\langle$Zuweisung$\rangle$  $\langle$Wert$\rangle$ $\langle$EOL$\rangle$ | $\langle$Gruppe$\rangle$ $\langle$EOL$\rangle$ | $\lambda$ $\langle$EOL$\rangle$
-	$\langle$Schluessel$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$
+	$\langle$Schluessel$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$ | $\langle$Grossbuchstaben$\rangle$ $\langle$Schluessel$\rangle$
 	$\langle$Zuweisung$\rangle$ ::= "="
-	$\langle$Wert$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$ | $\langle$Kleinbuchstaben$\rangle$
-	$\langle$Gruppe$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$
-	$\langle$Grossbuchstaben$\rangle$ ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "_" | "/" | "-" | ":" | "."
-	$\langle$Kleinbuchstaben$\rangle$ ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "_" | "/" | "-" | ":" | "." 
+	$\langle$Wert$\rangle$ ::= $\langle$Zeichenkette$\rangle$
+	$\langle$Gruppe$\rangle$ ::= "$[$" $\langle$Zeichenfolge$\rangle$ "$]$"
+	$\langle$Zeichenfolge$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$ $\langle$Zeichenfolge$\rangle$
+	$\langle$Zeichenkette$\rangle$ ::= $\lambda$ | $\langle$Zeichen$\rangle$ | $\langle$Zeichen$\rangle$ $\langle$Zeichenkette$\rangle$
+	$\langle$Grossbuchstaben$\rangle$ ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | 
+	$\langle$Zeichen$\rangle$ ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "_" | "/" | "-" | ":" | "." | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
 \end{lstlisting}
-Ein Beispiel einer validen Übergabedatei ist im Anhang \vref{lst:bspUbergabe} zur Veranschaulichung des Konzeptes abgebildet. Nachfolgend beschreibt der Algorithmus \vref{algo:configGenerierung} die Logik zur Generierung einer Konfigurationsdatei. Dieser ist absichtlich in Pseudocode verfasst, um den Fokus auf die Logik zu setzen und nicht auf Besonderheiten einer Programmiersprache.
+Ein Beispiel einer validen Übergabedatei ist im Anhang \vref{lst:bspUbergabe} zur Veranschaulichung des Konzeptes abgebildet. Nachfolgend beschreibt der Algorithmus \vref{algo:configGenerierung} die Logik zur Generierung einer Konfigurationsdatei. Dieser ist absichtlich in Pseudocode verfasst, um den Fokus auf die Logik zu setzen und nicht auf Besonderheiten einer Programmiersprache. Die Idee dieses ist es, die Übergabedatei einzulesen, auszuwerten und auf Basis dieser eine valide Konfigurationsdatei zu erstellen.
 
 \begin{algorithm}
 	\caption{Generierung der Konfigurationsdatei aus einer \ac{K-V}-Datei}\label{algo:configGenerierung}
