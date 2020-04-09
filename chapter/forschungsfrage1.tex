@@ -112,6 +112,8 @@ Die Projektbeteiligten sind im engeren Sinn die Fachbereiche (also Kunden der An
 Nachfolgend wird der automatisierte \enquote{Deployment}-Prozess zur Verteilung von Containern als \textit{Prozess} bezeichnet. Zur besseren Übersichtlichkeit ist im Anhang \vref{tab:anforderungslisteFF1} ein Anforderungskatalog zu finden. 
 % TODO: Definieren welche Anforderungen betrachtet werden --> wahrscheinlich nur die funktionalen Anforderungen ...
 
+- Anforderung von IE2: ARA als Deployment tool
+
 \section{Konzeption eines container-basierten, automatisierten \enquote{Deployments}}
 Dieses Teilkapitel beschreibt den Aufbau einer \textsc{OpenShift}-Labor-Umgebung, um das Verhalten von \textsc{OpenShift} zu testen. Des Weiteren wird eine Prozessmodellierung des automatisierten \enquote{Deployments} anhand einer Beispielanwendung \textsc{Camunda} erläutert. Dies ist gleichzeitig die Testapplikation, die in der \ac{SVI} benutzt wird, um das automatisierte \enquote{Deployment} von Container-Anwendungen zu untersuchen. Abschließend wird eine generische Konfigurationsdatei entwickelt, um Applikationen ins \textsc{OpenShift}-Cluster zu verteilen.
 
@@ -154,7 +156,7 @@ oc status | grep 'to pod port' # see all exposed services on this project
 test_connection blog-lab.127.0.0.1.nip.io @\label{lst:line:testConn}@
 \end{lstlisting}
 
-Nach Abschluss des Tests wird die Applikation mit \lstinline[language=sh]|oc delete all --selector app=blog| wieder gelöscht.
+Nach Abschluss des Tests wird die Applikation mit \lstinline[language=bash]|oc delete all --selector app=blog| wieder gelöscht.
 
 \subsection{Modellierung einer \enquote{Deployment}-Konfigurationsdatei}
 Um eine Verteilung der Container-Anwendung auf dem \textsc{OpenShift}-Cluster durchzuführen, benötigt das System eine Konfigurationsdatei, die als \ac{API}-Objekt an \textsc{OpenShift} übergeben wird. Dabei definiert diese den gewünschten Zustand einer bestimmten Komponente der Anwendung als \enquote{pod}\footnote{siehe Tabelle \vref{tab:definitionenK8s}}-Vorlage.\autocite[vgl.][Application\,$\rightarrow$\,Deployments]{red_hat_inc_okd_2019} Diese Datei stellt, als alleinige Quelle (\ac{SPOT}), alle notwendigen Informationen bereit, die die Anwendungen \textsc{OpenShift} benötigt, um eine funktionsfähige Datei in dem ausgewählten Projekt des Clusters bereitzustellen. Dies ist der erste Unterschied zum klassischen \enquote{Deployment} bei dem alle Quelldateien verteilt werden müssen.\autocite[vgl.][]{dearle_software_2007} Dabei ist die Konfigurationsdatei deklarativ\footnote{Programmierparadigma: im Gegensatz dazu gibt es das imperative Vorgehen, dass das \textit{Was} in welcher Reihenfolge zu tun ist beschreibt.} beschreiben, d.\,h. sie beschreibt \textit{was} \textsc{OpenShift} mit der angegeben Komponente machen soll.
@@ -184,12 +186,24 @@ In einer Arbeitstagung zum \ac{PoC} des \textsc{OpenShift}-Systems haben die Ent
 
 \lstinputlisting[language=yaml, firstline=17, lastline=42, firstnumber=17, caption={Ausschnitt aus Quellcode \ref{lst:entwurfCamunda}: Deklaration der Umgebungsvaribalen}, label=lst:deploymentCamundaEnv]{resources/listings/camundaEnv.yaml} 
 
-Die Zeichenketten mit dem Muster \enquote{\textit{\$Bezeichner\_}} stellen Platzhalter dar, die genutzt werden, um die eigentlichen Werte nicht in Klartext abzudrucken. Diese fallen unter das Betriebsgeheimnis. Platzhalter mit der gleichen Zeichenkette haben den identischen Inhalt. Es fällt auf, dass die \ac{URL} der Webservices immer mit dem gleichen Host beginnt und ein Teil des Pfades auch gleich ist. Es gibt zwei Möglichkeiten, wie der Algorithmus zur Generierung der Konfigurationsdateien aussehen könnte: Bei der \enquote{Deployment}-Variante müsste dieser die komplette Datei anhand definierter Regeln generieren. Die zweite Möglichkeit ist die Nutzung eines Vorlagen-Objektes (\enquote{template}), das einmal erstellt, unter gewissen Bedingungen, wiederverwendet werden kann. Dies bedeutet, dass für die Beschreibung der Komponenten-Verteilung die \enquote{DeploymentConfig}-Variante genutzt werden muss, da das \enquote{template}-Objekt nur diese Variante unterstützt. Beides sind Eigenentwicklung von \textsc{Red Hat}. Die Ausprägung \enquote{Deployment} ist ein natives \ac{K8s}-Objekt und deswegen nicht mit dem \enquote{template}-Objekt kompatibel. \textbf{<Entscheidung, ob eigene Generierung als Deployment OR Template mit DeploymentConfig>}
+Die Zeichenketten mit dem Muster \enquote{\textit{\$Bezeichner\_}} stellen Platzhalter dar, die genutzt werden, um die eigentlichen Werte nicht in Klartext abzudrucken. Diese fallen unter das Betriebsgeheimnis. Platzhalter mit der gleichen Zeichenkette haben den identischen Inhalt. Es fällt auf, dass die \ac{URL} der Webservices immer mit dem gleichen Host beginnt und ein Teil des Pfades auch gleich ist. Es gibt zwei Möglichkeiten, wie der Algorithmus zur Generierung der Konfigurationsdateien aussehen könnte: Bei der \enquote{Deployment}-Variante müsste dieser die komplette Datei anhand definierter Regeln generieren. Die zweite Möglichkeit ist die Nutzung eines Vorlagen-Objektes (\enquote{template}), das einmal erstellt, unter gewissen Bedingungen, wiederverwendet werden kann. Dies bedeutet, dass für die Beschreibung der Komponenten-Verteilung die \enquote{DeploymentConfig}-Variante genutzt werden muss, da das \enquote{template}-Objekt nur diese Variante unterstützt. Beides sind Eigenentwicklung von \textsc{Red Hat}. Die Ausprägung \enquote{Deployment} ist ein natives \ac{K8s}-Objekt und deswegen nicht mit dem \enquote{template}-Objekt kompatibel. Es besteht die Möglichkeit diese Objekt mit Parametern zu beschreiben, die in einer Datei \lstinline|<Anwendung>.env| gespeichert und mittels der \ac{CLI} eingelesen werden. Diese ersetzt dann die Parameter mit Werten aus der Datei. Die Entscheidung eine \ac{K-V}-Datei, für die Umgebungsvariablen zu nutzen, hat den Vorteil, dass diese extern in einer verteilten Versionsverwaltungsanwendung (beispielsweise \textsc{Git} oder \textsc{Serena Dimensions}) gespeichert werden kann. Nachfolgend ist der Aufbau einer \ac{K-V}-Datei als Quellcode \vref{lst:envCamunda} für die Umgebungsvariablen des Beispiels \vref{lst:entwurfCamunda} angedeutet. Das Trennzeichen zwischen Schlüssel und Wert ist das Gleichheitszeichen (\enquote{=}). Dieser Aufbau ist verpflichtend, wenn die \ac{CLI} von \textsc{OpenShift} genutzt wird.
 
-% TODO: weitermachen 
+\lstinputlisting[language=bash, firstline=7, caption={Umgebungsvariablen als \ac{K-V}-Datei}, label={lst:envCamunda}]{resources/listings/CamundaEnv.env.txt}
+
+Eine Anforderung der Abteilung \ac{IE2} ist es, die Konfigurationsdatei über eine Generierung zu erstellen, um mögliche Syntaxfehler ausschließen zu können. Des Weiteren soll so eine Standardisierung der Konfigurationsdatei unternehmensweit erzielt werden. Das Vorgehen dazu soll folgende Stufen enthalten: 
+
+
+\begin{enumerate}
+	\item Eine einheitliche Übergabedatei soll von den Entwicklungsteams in einer Versionsverwaltung abgelegt werden. Die Datei ist nach Vorgaben der Abteilung \ac{IE2} aufgebaut.
+	\item Danach soll aus dieser Datei die Konfigurationsdatei erzeugt werden.
+	\item Diese wird durch \textsc{OpenShift} validiert, bevor sie ins Cluster geladen wird.
+	\item Nun steht die Konfigurationsdatei bereit, um die Verteilung der, in dieser Datei spezifizierten, Komponenten durchzuführen beziehungsweise sie beschreibt was verteilt wird.
+\end{enumerate}
+
+Für die Generierung ist es wichtig ein Grundgerüst der Konfigurationsdatei zu haben. Dieses ist im Anhang \vref{lst:grundConfig} mit beispielhaften Werten zu sehen. Zweck des Grundaufbau ist es, bei der Generierung die fehlenden Informationen möglichst leicht zu integrieren. Dabei hilft es, wenn ein Grundstruktur des Ergebnisses vorhanden ist. 
 
 \begin{algorithm}
-	\caption{Generierung der Konfigurationsdatei}\label{algo:configGenerierung}
+	\caption{Generierung der Konfigurationsdatei aus einer \ac{K-V}-Datei}\label{algo:configGenerierung}
 	
 	\begin{algorithmic}
 		\Function{Test}{a,b}
