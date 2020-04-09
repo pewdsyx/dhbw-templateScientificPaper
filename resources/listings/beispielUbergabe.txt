@@ -1,0 +1,7 @@
+[CONTAINERS]
+NAME=helloworld
+IMAGE=openshift/origin-test
+
+[ENV]
+NAME=envTest
+VALUE=https://server.example.loc:8080
