@@ -215,25 +215,41 @@ Für die Generierung ist es wichtig ein Grundgerüst der Konfigurationsdatei zu 
 \end{lstlisting}
 Ein Beispiel einer validen Übergabedatei ist im Anhang \vref{lst:bspUbergabe} zur Veranschaulichung des Konzeptes abgebildet. Nachfolgend beschreibt der Algorithmus \vref{algo:configGenerierung} die Logik zur Generierung einer Konfigurationsdatei. Dieser ist absichtlich in Pseudocode verfasst, um den Fokus auf die Logik zu setzen und nicht auf Besonderheiten einer Programmiersprache. Die Idee dieses ist es, die Übergabedatei einzulesen, auszuwerten und auf Basis dieser eine valide Konfigurationsdatei zu erstellen.
 
-\begin{algorithm}
+\begin{algorithm}[h!]
 	\caption{Generierung der Konfigurationsdatei aus einer \ac{K-V}-Datei}\label{algo:configGenerierung}
 	
 	\begin{algorithmic}
-	\Procedure{generateDeploymentConfig}{pathToKVFile}
-		\State path $\gets$ pathToKVFile
-		\State map$[\quad]$$[\quad]$ \Comment{Map with a key and a value, e.g. a array of lines}
-		\State lines$[\quad]$ $\gets$ \Call{ReadFileByLines}{path}
 		
-		\ForAll{lines$[\quad]$ as line}
-			\If{line like \Call{regEx}{"$\backslash[\{1\}([A-Z]+)\backslash]\{1\}$"}}
-				\State Test
-			\EndIf
-		\EndFor
-		
-	\EndProcedure
+		\Procedure{generateDeploymentConfig}{pathToKVFile}
+			\State path $\gets$ pathToKVFile
+			\State map$[\quad]$$[\quad]$ \Comment{Map with a key and a value, e.g. a array of lines as value}
+			\State lines$[\quad]$ $\gets$ \Call{ReadFileByLines}{path}
+			\State currentKey = null
+			\State yamlTemplate $\gets$ \Call{ReadFile}{pathToYamlTemplate}
+			\State
+			\ForAll{lines$[\quad]$ as line}
+				\If{line like \Call{regEx}{"$\backslash[\{1\}([A-Z]+)\backslash]\{1\}$"}} \Comment{New group element?}
+					\State keyword $\gets$ \Call{trim}{line, "$[$", "$]$"}
+					\State currentKey $\gets$ keyword
+					\State map.\Call{addKey}{currentKey}
+				\Else \Comment line contains a k-v-pair
+					\State map$[currentKey]$.\Call{add}{line}
+				\EndIf
+			\EndFor \Comment{All lines of file are stored in k-v-pairs in var map now}
+			\State
+			
+			\State allKeys$[\quad] \gets$ map.\Call{getAllKeys}{}
+			\For{i $\gets$ 0, i $\leq$ \Call{length}{allKeys$[\quad]$}, i $++$}
+				\ForAll{lines of map$[allKeys[i]]$ as line}
+					\State \Call{AddToYaml}{yamlFile, lineToBeAdded, key}
+				\EndFor
+			\EndFor
+		\EndProcedure
 	\end{algorithmic}
 
 \end{algorithm}
+
+Ziel des Algorithmus \vref{algo:configGenerierung} ist es, aus einer definierten Übergabedatei (siehe dazu Quellcode \vref{lst:bnfDatei}) die Konfigurationsdateivorlage (\enquote{yamlTemplate}) mit den Übergabedaten anzureichern. Dabei werden zuerst mit einer Schleife alle Zeilen der Übergabedatei eingelesen und nach zwei Kriterien klassifiziert. Kriterium eins beziehungsweise Fall eins bedeutet, dass die Zeile ein neues Gruppenelement (später in der \textsc{Yaml}-Datei das Element der aktuellen Ebene minus eins) enthält. Damit ist ein Schlüsselelement gefunden. Diesem werden nun im alternativen Fall alle folgende Zeilen zu geordnet bis wieder ein Gruppenelement gefunden ist. Nach Beendigung der ersten Schleife sind alle Zeilen in einem \enquote{map}-Objekt als \ac{K-V}-Paare gespeichert. Diese werden an der entsprechenden Stelle der Konfigurationsdatei hinzugefügt. Nach Beendigung dieses Programms ist die Konfigurationsdatei mit den entsprechenden Werten der Übergabedatei beschrieben. Eine mögliche Implementierung des Algorithmus \vref{algo:configGenerierung} ist im Anhang \vref{lst:bspUmsetzungAlgoGen} als \textsc{Python}-Skript abgebildet. \textbf{<Kurzes Statement zum Python-Skript>}
 
 \subsection{Prozessmodellierung anhand der Anwendung \textsc{Camunda}}
 % TODO: Prozessmodellierung schreiben
