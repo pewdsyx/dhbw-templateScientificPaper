@@ -109,8 +109,35 @@ Das \enquote{statement of needs} ist, wie in Kapitel \vref{kap:methodikAnfAnalys
 \par
 Die Projektbeteiligten sind im engeren Sinn die Fachbereiche (also Kunden der Anwendung), die Entwicklungsteams und die \enquote{Deployment}-Abteilung. Im weiteren Sinne könnten die Geschäftsführung der \ac{SVI}, der Vorstand der \ac{SV}, die Kunden der \ac{SV}, sowie die Kunden/der Vorstand der \ac{SVS} ein begründetes Interesse an diesen Projekt haben. So hat der Fachbereich Interesse an einem funktionsfähigen System, die Entwicklungsteams an einem häufigen (annäherungsweise kontinuierlichem) \enquote{Deployment} und die \enquote{Deployment}-Abteilung an einem hoch automatisiertem und revisionskonformen Prozess. Dies sind nur einige Aspekte, die bei weitem nicht alle Gründe des Interesses abdecken. Es werden hier nur die \enquote{stakeholder} im engeren Sinn weiter betrachtet, da diese Arbeit sich mit der Modellierung eines automatisierten Prozesses im Bereich der Entwicklung, der wirtschaftlichen Betrachtung und der rechtlichen Sicherung dieses beschäftigt. Der Fokus liegt auf der Modellierung des Prozesses und mit diesem deckt es die engeren Projektbeteiligten ab. 
 \par
-Nachfolgend wird der automatisierte \enquote{Deployment}-Prozess zur Verteilung von Containern als \textit{Prozess} bezeichnet. Zur besseren Übersichtlichkeit ist im Anhang \vref{tab:anforderungslisteFF1} ein Anforderungskatalog zu finden. 
-% TODO: Definieren welche Anforderungen betrachtet werden --> wahrscheinlich nur die funktionalen Anforderungen ...
+Nachfolgend wird der automatisierte \enquote{Deployment}-Prozess zur Verteilung von Containern als \textit{System} bezeichnet. Dies erfolgt auf der Grundlage der Formulierungshilfe für Anforderungen nach \cite{rupp_formulierungsregel_2020}. Es werden ausschließlich die funktionalen Anforderungen \autocite[vgl.][]{international_organization_for_standardization_isoiec_2011,} betrachtet, da die erfassten alle produkt-spezifisch sind -- nicht-funktionale Anforderung sind im Gegensatz dazu produkt-unspezifisch. Zur besseren Übersichtlichkeit sind die Anforderungen mit $A_{1}, A_{2}, ..., A_{n}, n \in \mathbb{N}$ nummeriert und ein Anforderungskatalog ist im Anhang \vref{tab:anforderungslisteFF1} zu finden. Die folgenden Anforderungen $A_{1}, A_{2}, ..., A_{?}$ stammen von dem Projektbeteiligten (\enquote{stakeholder}) \enquote{Entwicklungsteam/-abteilung}. Diese wurden während einer Befragung dieses Teams am 11.März 2020 im Rahmen einer Arbeitstagung \enquote{Container-Verteilung} erhoben.
+\par %TODO: Anforderungsnummerierung vervollständigen 
+$\mathbf{A_{1}}$\textbf{: Das System muss die Möglichkeit bieten, über eine korrekte Konfigurationsdatei, alle Komponenten der Anwendung zu verteilen.}
+\par
+Bla bla bla
+\par
+$\mathbf{A_{2}}$\textbf{: Das System soll die Möglichkeit bieten über eine standardisierte Übergabedatei alle Umgebungsvariablen des Containers zu definieren.}
+\par
+BLABALABLBALBA Test
+\par
+$\mathbf{A_{3}}$\textbf{: Das System muss die Möglichkeit bieten, über eine Validierung, konsistente Komponenten zu verteilen.}
+\par
+blsjdefpewifwfiewhfewfwpi
+\par
+$\mathbf{A_{4}}$\textbf{: Das System muss die Möglichkeit bieten, über eine Validierung, konsistente Komponenten zu verteilen.}
+\par
+dfheofwiehfiwoef
+\par
+$\mathbf{A_{4}}$\textbf{: Das System muss die Möglichkeit bieten unabhängig von dem Inhalt des Containers diesen zu verteilen.}
+\par
+hdiehfweihfwo
+\par
+$\mathbf{A_{5}}$\textbf{: Das System muss fähig sein mit \textsc{OpenShift} über die \ac{API} zu kommunizieren.}
+\par
+hdhdhdhdhd
+\par
+$\mathbf{A_{6}}$\textbf{: Das System soll fähig sein das \textsc{OpenShift}-Cluster zu jeden Zeit mit einem konsistenten Zustand zu verlassen.}
+\par
+hehfwiefhwehfoehfow
 
 - Anforderung von IE2: ARA als Deployment tool
 
@@ -146,7 +173,7 @@ Um das Verhalten des \textsc{OpenShift}-Clusters während eines \enquote{Deploym
 \par
 Als Test-Applikation soll eine Webseite auf Basis von \textsc{Django}\footnote{\enquote{Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.} Quelle: \cite[][]{django_software_foundation_web_2020}} in Cluster verteilt werden. Es wird ein vorgefertigtes \enquote{Image} für diesen Test genutzt. Der Quellcode \vref{lst:openShiftDeployLab} zeigt die benötigten Kommandos, um eine neue Applikation zu erstellen. Des Weiteren illustriert dieser, wie die Anwendung nach außen freigegeben wird, d.\,h. sie ist außerhalb des Projektes erreichbar. Danach wird in Zeile \vref{lst:line:testConn} der Quellcode-Abbildung \vref{lst:openShiftDeployLab} die Verbindung zur Webseite mittels der Ermittlung des \textsc{HTTP}-Status-Codes überprüft\footnote{Der Quelltext dieser Funktion ist im Anhang \vref{lst:testConnection} einzusehen}.
 
-\begin{lstlisting}[language=bash, caption={Test-\enquote{Deployment} ins \textsc{OpenShift}-Cluster}, label=lst:openShiftDeployLab]
+\begin{lstlisting}[language=bash, caption={Test-\enquote{Deployment} ins \textsc{OpenShift}-Cluster}, label={lst:openShiftDeployLab}]
 oc new-app openshiftkatacoda/blog-django-py --name blog
 oc describe svc/blog # print config 
 oc expose svn/blog
