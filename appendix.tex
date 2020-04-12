@@ -141,7 +141,7 @@ Hierbei ist zu beachten, dass das orange gefärbte die Funktionalitäten der \te
 	%		{\scriptsize \textit{Alle Rechte, einschließlich der Vervielfältigung, Veröffentlichung, Bearbeitung und Übersetzung bleiben der SV Informatik GmbH vorbehalten.}}
 \end{figure}
 
-% TODO: befüllen
+
 \section{Anforderungskatalog der Forschungsfrage eins}
 Die Klassifizierung beschreibt die Wichtigkeit (gering, mittel, hoch) im Kontext des
 zu implementierenden Prozesses und die Nummer dient der besseren Identifizierbarkeit der jeweiligen Anforderung.
@@ -149,12 +149,21 @@ zu implementierenden Prozesses und die Nummer dient der besseren Identifizierbar
 	\centering
 	\ra{1.3} %more space beetween rules
 	
-	\begin{tabular}{@{}lp{6.5cm}l@{}}\toprule[1.5pt]
+	\begin{tabular}{@{}llp{9.0cm}@{}}\toprule[1.5pt]
 		
 		\textbf{Nummer} & \textbf{Klassifizierung} & \textbf{Anforderung} \\ \midrule
 		% below rules with content
 		
-		Test                      & Def                 & Autor           \\
+		$A_{1}$ & hoch & Das System muss die Möglichkeit bieten, über eine korrekte Konfigurationsdatei, alle Komponenten der Anwendung zu verteilen.           \\
+		$A_{2}$ & mittel & Das System soll die Möglichkeit bieten über eine standardisierte Übergabedatei alle Umgebungsvariablen des Containers zu definieren. \\
+		$A_{3}$ & hoch & Das System muss die Möglichkeit bieten, über eine Validierung, konsistente Komponenten zu verteilen.\\
+		$A_{4}$ & hoch & Das System muss die Möglichkeit bieten unabhängig von dem Inhalt des Containers diesen zu verteilen.\\
+		$A_{5}$ & hoch & Das System muss fähig sein mit \textsc{OpenShift} über das \ac{API} zu kommunizieren. \\
+		$A_{6}$ & mittel & Das System soll fähig sein das \textsc{OpenShift}-Cluster zu jedem Zeitpunkt mit einem konsistenten Zustand zu verlassen. \\
+		$A_{7}$ & niedrig & Das System wird die Möglichkeit bieten die Verteilung von Komponenten zu unterbrechen. \\
+		$A_{8}$ & hoch & Das System muss die Möglichkeit bieten, über die Verteilungssoftware \textsc{Ara}, die Verteilung der Komponenten durchzuführen. \\
+		$A_{9}$ & hoch & Das System muss die Möglichkeit bieten automatisiert alle notwendigen Komponenten über die Konfigurationsdatei zu erkennen und zu verteilen. \\
+		$A_{10}$ & hoch & Das System muss den gesetzlichen sowie sicherheitstechnischen Vorgaben entsprechen.\\
 		
 		\bottomrule[1.5pt]
 	\end{tabular}
