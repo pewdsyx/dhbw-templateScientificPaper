@@ -311,13 +311,21 @@ Die Anforderungen $A_{1}, ..., A_{10}$ wurden auf unterschiedliche Weise in dies
 	\centering
 	\ra{1.3} %more space beetween rules
 	
-	\begin{tabular}{@{}lp{8.0cm}@{}}\toprule[1.5pt]
+	\begin{tabular}{@{}p{4.5cm}p{8.0cm}@{}}\toprule[1.5pt]
 		
 		\textbf{Methode} & \textbf{Beschreibung} \\ \midrule
 		% below rules with content
 
 		
-		Test                      & Def \\
+		push(Ü-Datei) & Veröffentlicht die Übergabedatei in der Versionsverwaltung. \\
+		holeDatei(Datei) & Lädt die angegebene Datei von der Versionsverwaltung auf einen Server, der die Methode aufgerufen hat. \\
+		starteVerteilung(Konfig-Vorlage, Ü-Datei) & kdlkdpefokfok \\
+		sende(Konfig-Datei, Server) & Diese Methode versendet die Konfigurationsdatei an den entsprechend Server. \\
+		validieren(Konfig-Datei) & Überprüft die Konfigurationsdatei auf Syntax-Fehler. \\
+		hochladen(Konfig-Datei) & Lädt die Datei in \textsc{OpenShift}-Cluster hoch.\\
+		stelleBereit(für wen?, Datei) & Diese Methode schaltet die angegebene Datei für alle berechtigten Benutzerinnen auf dem Cluster frei.\\
+		setzeSichtbarkeit(Sichtbarkeit) & Veröffentlicht die Komponenten, die durch die Konfigurationsdatei beschrieben wurden. Damit ist der Verteilungsvorgang abgeschlossen.\\
+		abbruch(Fehlermeldung) & Bricht den Verteilungsprozess ab und gibt eine Fehlermeldung zurück.\\
 		
 		\bottomrule[1.5pt]
 	\end{tabular}
@@ -326,7 +334,7 @@ Die Anforderungen $A_{1}, ..., A_{10}$ wurden auf unterschiedliche Weise in dies
 	\label{tab:methodenFunktion}
 	
 \end{table*}
- 
+ \clearpage
 \section{Ergebnis der Forschungsfrage eins}
 % business benefits cloud? --> Teilbereich
 - OpenShift Projekte könnten Stages in der Übergangsphase abbilden --> SVI wird immer Stages haben.
