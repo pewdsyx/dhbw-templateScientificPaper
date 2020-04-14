@@ -1,5 +1,5 @@
 \chapter[Forschungsfrage 1]{Wie können Container-Anwendungen den Prozess des automatisierten \enquote{Deployments} unterstützen?} \label{ff1}
-Dieses Kapitel ...
+Dieses Kapitel beschreibt die Entwicklung eines Verteilungsprozesses der Container-Anwendungen mit der, für die Abteilung \ac{IE2} zentralen, Software \textsc{Ara}. Zuerst werden Grundlagen der Anforderungsanalyse, der \enquote{Cloud}-Technologie und der Containerisierung gelegt. Danach folgt die Dokumentation der Entwicklung des automatisierten Prozesses, sowie Definition einer Übergabe- und Konfigurationsdatei. Ziel dieses Kapitels ist es, die Forschungsfrage eins zu beleuchten und ein fundiertes Ergebnis zu erzeugen.
 
 \section{Grundlagen: Definieren der Begrifflichkeiten zur Forschungsfrage eins}
 Dieses Teilkapitel soll grundlegende Begrifflichkeiten, die im weiteren Verlauf dieser Arbeit verwendet werden, definieren, um so eine einheitliche Terminologie der Begriffe zu entwickeln. Dadurch wird ein gemeinsames Verständnis erzeugt.
@@ -319,7 +319,7 @@ Die Anforderungen $A_{1}, ..., A_{10}$ wurden auf unterschiedliche Weise in dies
 		
 		push(Ü-Datei) & Veröffentlicht die Übergabedatei in der Versionsverwaltung. \\
 		holeDatei(Datei) & Lädt die angegebene Datei von der Versionsverwaltung auf einen Server, der die Methode aufgerufen hat. \\
-		starteVerteilung(Konfig-Vorlage, Ü-Datei) & kdlkdpefokfok \\
+		starteVerteilung(Konfig-Vorlage, Ü-Datei) & Damit wird die Erstellung der angereicherten Konfigurationsdatei gestartet. \\
 		sende(Konfig-Datei, Server) & Diese Methode versendet die Konfigurationsdatei an den entsprechend Server. \\
 		validieren(Konfig-Datei) & Überprüft die Konfigurationsdatei auf Syntax-Fehler. \\
 		hochladen(Konfig-Datei) & Lädt die Datei in \textsc{OpenShift}-Cluster hoch.\\
@@ -334,7 +334,7 @@ Die Anforderungen $A_{1}, ..., A_{10}$ wurden auf unterschiedliche Weise in dies
 	\label{tab:methodenFunktion}
 	
 \end{table*}
- \clearpage
+ 
 \section{Ergebnis der Forschungsfrage eins}
 % business benefits cloud? --> Teilbereich
 - OpenShift Projekte könnten Stages in der Übergangsphase abbilden --> SVI wird immer Stages haben.
