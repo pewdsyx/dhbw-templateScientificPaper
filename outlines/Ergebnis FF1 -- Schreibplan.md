@@ -9,6 +9,6 @@ Wie können Container-Anwendungen den Prozess des automatisierten "Deployments" 
    1. Container-Deploy: Aufwand am Anfang sehr hoch ... danach kaum Aufwand
    2. Standard-Deploy: Aufwand am Anfang sehr hoch ... und dann pendelt sich der Aufwand auf konstantem Niveau ein
 3. Prozess lässt sich leichter kontrollieren, da die verteilten Anwendungen über eine einzige Konfigurationsdatei gesteuert werden
-4. Generierung der Konfigurationsdatei vergleichsweise zur Sammlung aller Quellen bei dem klassischen Deployment total leicht --> Python Skript max.30 Zeilen Code
-5. Algorithmus zur Generierung ist ein erster Entwurf
-6. Weitere Evaluierung müssen während der ersten Releasezyklen durchgeführt werden
+   1. Generierung der Konfigurationsdatei vergleichsweise zur Sammlung aller Quellen bei dem klassischen Deployment total leicht --> Python Skript max.30 Zeilen Code
+4. Algorithmus zur Generierung ist ein erster Entwurf
+5. Weitere Evaluierung müssen während der ersten Releasezyklen durchgeführt werden
