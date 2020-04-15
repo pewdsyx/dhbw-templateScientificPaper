@@ -16,8 +16,16 @@ irgendwas Originelles...
 \paragraph{Problemstellung/-abgrenzung}
 
 \paragraph{Zielstellung der Arbeit}
-Folgende \textit{SMART}\footnote{\enquote{SMART-Regel, die eine einfache  Methode zum Operationalisieren von Zielen und auch zur Überprüfung der Güte von Zielen darstellt.} Quelle: \cite[][S.69]{dechange_projektmanagement_2020}}-formulierte Ziele sollen diese Bachelorthesis leiten, messbar machen und später als Anhaltspunkt zur Evaluierung des Erfolgs dienen:
+Folgende \textit{SMART}\footnote{\enquote{SMART-Regel sind Formulierungshilfen, die eine einfache Methode zum Operationalisieren von Zielen und auch zur Überprüfung der Güte von Zielen darstellen.} Quelle: \cite[][S.69]{dechange_projektmanagement_2020}}-formulierte Ziele sollen diese Bachelorthesis leiten, messbar machen und später als Anhaltspunkt zur Evaluierung des Erfolgs dienen:
 
+\begin{enumerate}
+	\item Entwicklung eines Verteilungsprozess für einfache Container-Anwendungen bis zum 27.April 2020. Einfach bedeutet hier, dass die Container-Struktur aus einer \enquote{Base Image}\footnote{siehe dazu Kapitel \vref{kap:container}}-Schicht und einer Logik-Schnitt (Eigenentwicklung) besteht.
+	\item Der Prozess muss zu 98\,\% ohne Einwirkung von Menschen während des Verteilungsvorgangs funktionieren, d.\,h. er ist (annähernd) voll automatisiert. Dies muss bis zum Ende des Bearbeitungszeitraum der Arbeit (8.Mai 2020) umgesetzt werden.
+	\item Die Generierung einer Konfigurationsdatei soll in 9 von 10 Verteilungen automatisch mit einem Skript durchgeführt werden. Umzusetzen ist dies bis zum 08.Mai 2020.
+	\item Die Vorteile einer Container-Anwendung für die Verteilung dieser sollen erforscht werden. Akzeptiert ist dieses Ziel, sobald eine Auflistung und eine kritische Betrachtung der Ergebnisse beschrieben wurde. Umzusetzen bis zum Ende des Bearbeitungszeitraums. (Dieses Ziel ist nicht komplett \textit{SMART}-konform, da die zumindest die Messbarkeit ohne genannte Messgröße nicht nachvollziehbar ist.)
+	\item Die wirtschaftliche Betrachtung muss sich anhand des Standes von Wissenschaft und Technik orientieren. Dazu werden gängige Regeln von \cite{herman_is_2009}, \cite{brugger_it_2009} u.\,Ä. benutzt. Diese Betrachtung muss bis zum Ende des Bearbeitungszeitraums durchgeführt werden. Die Messbarkeit wird durch die Einhaltung der oben genannten Regeln beschrieben.
+	\item Die sicherheits-/rechtlich-relevanten Aspekte dieses Projektes sollen anhand der, für die Finanzdienstleitungs-/Versicherungsbranche, geltenden Vorschriften beleuchtet werden. Der Umfang dieser Beleuchtung beschränkt sich auf das Nötigste, d.\,h. es müssen nur die wichtigsten Regeln beschrieben werden. Dies ist bis zum Ende des Bearbeitungszeitraumes umzusetzen. Die Messbarkeit ist durch die sicherheits-/rechtlich-relevanten Vorschriften bestimmt.
+\end{enumerate}
 
 \paragraph{Forschungsfragen/-design}
 Die Forschungsfragen mit der sich diese Bachelorarbeit beschäftigen wird, sind eine direkte Konsequenz aus der Zielstellung und aus den unternehmensinternen Anforderungen an einen möglichen automatisierten Prozess. Dabei liegt der Fokus auf der Betrachtung beider Teildisziplinen der Wirtschaftsinformatik, nämlich der Informatik und der Wirtschaft -- jedoch wird der größere Teil dieser Arbeit einen informationstechnischen Fokus besitzen. Die folgende Aufzählung nennt die einzelnen Forschungsfragen, die im weiteren Verlauf ein gemeinsames Ergebnis erbringen werden. Dieses ist in Kapitel \vref{kritischeBetrachtung} zu finden.
@@ -26,7 +34,7 @@ Die Forschungsfragen mit der sich diese Bachelorarbeit beschäftigen wird, sind 
 	\item Welche wirtschaftlichen Vorteile hat der Einsatz von Container auf den Prozess des automatisierten \enquote{Deployments}?
 	\item Welche besonderen sicherheitstechnischen Aspekte muss ein solcher Prozess im Bereich der Versicherung erfüllen?
 \end{enumerate}
-%TODO: Definition Technologie-Wertkette -> DevOps Handbuch O'Reilly
+% TODO: Nachfolgende Absätze auf Richtigkeit prüfen
 Die Forschungsfrage eins wird einen Ist-Zustand analysieren. Dieser enthält eine Prozessanalyse, eine identifizierte Technologie-Wertkette\footnote{Definition: <Defintion/>} sowie einen Anforderungskatalog der Entwicklungsabteilungen an den zu konzeptionierenden \enquote{Deployment}-Prozess für die Container-Anwendungen. Danach wird ein Konzept eines container-basierten, automatisierten \enquote{Deployment}-Prozesses erstellt, dabei wird die Methodologie und das eigentliche Konzept erläutert. Die Forschungsfrage eins schließt mit einem Teilergebnis ab. \par
 
 Die Forschungsfrage zwei beschäftigt sich mit den wirtschaftlichen Vorteilen eines Einsatzes der Container auf den Prozess des automatisierten \enquote{Deployment}-Prozesses. Dabei werden die Erstellung eines \enquote{Business Case\footnote{engl. Geschäftsszenario}}, die Prüfung der Übereinstimmung der Ziele dieser Arbeit mit der Geschäftsstrategie der \ac{SVI} und mögliche Disharmonien dieser identifiziert. Außerdem entsteht eine Konzeption eines verbesserten Geschäftsszenarios, das die Kosteneinsparpotentiale und die Zielharmonisierung enthalten wird. Ein Ausblick schließt die Forschungsfrage zwei ab. \par
