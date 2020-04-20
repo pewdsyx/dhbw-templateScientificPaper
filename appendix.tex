@@ -187,6 +187,20 @@ zu implementierenden Prozesses und die Nummer dient der besseren Identifizierbar
 Dabei stellen alle Zeichenketten mit dem Muster \enquote{\textit{\$Bezeichner\_}} ein Platzhalter dar. Aus Gründen des Schutzes der Infrastruktur der \ac{SVI}/\ac{SV} ist es nicht gestattet die wirklichen Endpunkte der Webservices im Klartext abzubilden -- sie unterliegen dem Betriebsgeheimnis.
 
 \clearpage
+\section{Aufbau der zulässigen Wortfolgen der Übergabedatei}
+
+\begin{lstlisting}[language=html, caption={\ac{BNF} der Übergabedatei}, label=lst:bnfDatei, mathescape=true]
+$\langle$Zeile$\rangle$ ::= $\langle$Schluessel$\rangle$ $\langle$Zuweisung$\rangle$  $\langle$Wert$\rangle$ $\langle$EOL$\rangle$ | $\langle$Gruppe$\rangle$ $\langle$EOL$\rangle$ | $\lambda$ $\langle$EOL$\rangle$
+$\langle$Schluessel$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$ | $\langle$Grossbuchstaben$\rangle$ $\langle$Schluessel$\rangle$
+$\langle$Zuweisung$\rangle$ ::= "="
+$\langle$Wert$\rangle$ ::= $\langle$Zeichenkette$\rangle$
+$\langle$Gruppe$\rangle$ ::= "$[$" $\langle$Zeichenfolge$\rangle$ "$]$"
+$\langle$Zeichenfolge$\rangle$ ::= $\langle$Grossbuchstaben$\rangle$ | $\langle$Grossbuchstaben$\rangle$ $\langle$Zeichenfolge$\rangle$
+$\langle$Zeichenkette$\rangle$ ::= $\lambda$ | $\langle$Zeichen$\rangle$ | $\langle$Zeichen$\rangle$ $\langle$Zeichenkette$\rangle$
+$\langle$Grossbuchstaben$\rangle$ ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | 
+$\langle$Zeichen$\rangle$ ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "_" | "/" | "-" | ":" | "." | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+\end{lstlisting}
+\clearpage
 
 \section{Grundgerüst der Konfigurationsdatei}
 \lstinputlisting[language=yaml, caption={Grundgerüst der Konfigurationsdatei}, label={lst:grundConfig}]{resources/listings/exampleDC.yaml}
