@@ -47,3 +47,30 @@
 	
 	\caption{Definition der \enquote{\ac{K8s}}-Begrifflichkeiten}\label{tab:definitionenK8s}\\
 \end{longtable}
+
+
+
+
+\begin{table*}[h!]
+	\centering
+	\ra{1.3} %more space beetween rules
+	
+	\begin{tabular}{@{}lp{8.0cm}@{}}\toprule[1.5pt]
+		
+		\textbf{Komponente} & \textbf{Bausteine des IT-Grundschutzes}  \\ \midrule
+		
+		% below rules with content
+		\enquote{bare metal}-Server & SYS.1.1 Server \\
+		virtualisierte Server & SYS.1.5 Virtualisierung \\
+		\textsc{Linux}-basierte Betriebssystem & SYS.1.3 Server unter Linux und Unix\\
+		\textsc{OpenShift}-Anwendung & APP.1 Client-Anwendungen bzw. APP.3 Netz-basierte Dienste \\
+		Netzwerk bzw. demilitarisierte Zone & NET.1 Netze und NET.3.2 \enquote{Firewall}\\
+		Rechenzentrum & INF.2 Rechenzentrum sowie Serverräume\\
+		
+		\bottomrule[1.5pt]
+	\end{tabular}
+	
+	\caption{Zuordnung der Komponenten zu den Bausteinen}
+	\label{tab:zuordnungKompBau}
+	
+\end{table*}
