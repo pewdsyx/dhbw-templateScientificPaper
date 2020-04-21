@@ -106,8 +106,12 @@
 \pagenumbering{Roman}
 \setcounter{page}{12} %TODO: schauen, ob die "9" passt.
 
-%	Literaturverzeichnis
+%	Literaturverzeichnis -- group -> bricht URLS um, damit sie nicht über die Seite laufen
+\begingroup
+%\raggedright
+\sloppy
 \printbibliography[title=Literaturverzeichnis]
+\endgroup
 \cleardoublepage
 
 % Der Anhang beginnt hier - jedes Kapitel wird alphabetisch aufgezählt. (Anhang A, B usw.)
