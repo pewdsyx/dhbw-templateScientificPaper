@@ -289,33 +289,34 @@ Der Prozess muss zwingend mit der zentralen \enquote{Deployment}-Anwendung \text
 \end{figure}
 Die Anforderungen $A_{1}, ..., A_{10}$ wurden auf unterschiedliche Weise in diesem Prozess umgesetzt. $A_{1}$ und $A_{2}$ beziehen sich auf die Konfigurationsdatei und die Übergabedatei. Die Anforderungen wurden durch die Standardisierung der Übergabedatei, die Generierung der Konfigurationsdatei und die Validierung dieser umgesetzt. Die Möglichkeit der Definition von Umgebungsvariablen ist in der Übergabedatei gegeben. Über die Konfigurationsdatei werden die Komponenten verteilt. $A_{3}$ beschreibt die Anforderung, dass konsistente Komponenten verteilt werden. Die Validierung dieser erfolgt durch das \textsc{OpenShift}-Cluster und ist somit gewährleistet. Des Weiteren unterstützt der, in Abbildung \ref{abb:prozessDeploymentCamunda}, dargestellte Prozess die Anforderung $A_{4}$, indem eine Konfigurationsdatei als \enquote{Deployment}-Artefakt verteilt wird. Damit ist der Prozess entkoppelt von dem Inhalt des Containers. Anforderung $A_{5}$ bis $A_{7}$ wird durch die direkte Kommunikation (über die \ac{API}) der Verteilungsanwendung \textsc{Ara} erfüllt. \textsc{Ara} kommuniziert ausschließlich über die \textsc{OpenShift}-\ac{API}. Da diese Verteilungsanwendung automatisch und revisions-konform ist, sind alle verbleibenden Anforderungen erfüllt. Die Funktionalitäten der Methoden, die in Abbildung \ref{abb:prozessDeploymentCamunda} verwendet wurden, werden in der Tabelle \vref{tab:methodenFunktion} kurz beschrieben. Dies dient der Übersichtlichkeit und dem Verständnis. 
 
-\begin{table*}[h!]
-	\centering
-	\ra{1.3} %more space beetween rules
+\begin{longtable}{@{}p{5.5cm}p{8.0cm}@{}}
+	\toprule[1.5pt]
+	\textbf{Methode} & \textbf{Beschreibung} \\* \midrule
+	\endfirsthead
+	%
+	\multicolumn{2}{c}%
+	{{\bfseries Tabelle \thetable\ von vorheriger Seite fortgeführt.}} \\
+	\toprule
+	\textbf{Methode} & \textbf{Beschreibung} \\* \midrule
+	\endhead
+	%
+	\bottomrule
+	\endfoot
+	%
+	\endlastfoot
+	%
+	push(Ü-Datei) & Veröffentlicht die Übergabedatei in der Versionsverwaltung. \\
+	holeDatei(Datei) & Lädt die angegebene Datei von der Versionsverwaltung auf einen Server, der die Methode aufgerufen hat. \\
+	starteVerteilung(Konfig-Vorlage, Ü-Datei) & Damit wird die Erstellung der angereicherten Konfigurationsdatei gestartet. \\
+	sende(Konfig-Datei, Server) & Diese Methode versendet die Konfigurationsdatei an den entsprechend Server. \\
+	validieren(Konfig-Datei) & Überprüft die Konfigurationsdatei auf Syntax-Fehler. \\
+	hochladen(Konfig-Datei) & Lädt die Datei in \textsc{OpenShift}-Cluster hoch.\\
+	stelleBereit(für wen?, Datei) & Diese Methode schaltet die angegebene Datei für alle berechtigten Benutzerinnen auf dem Cluster frei.\\
+	setzeSichtbarkeit(Sichtbarkeit) & Veröffentlicht die Komponenten, die durch die Konfigurationsdatei beschrieben wurden. Damit ist der Verteilungsvorgang abgeschlossen.\\
+	abbruch(Fehlermeldung) & Bricht den Verteilungsprozess ab und gibt eine Fehlermeldung zurück.\\* \bottomrule
 	
-	\begin{tabular}{@{}p{5.5cm}p{8.0cm}@{}}\toprule[1.5pt]
-		
-		\textbf{Methode} & \textbf{Beschreibung} \\ \midrule
-		% below rules with content
-
-		
-		push(Ü-Datei) & Veröffentlicht die Übergabedatei in der Versionsverwaltung. \\
-		holeDatei(Datei) & Lädt die angegebene Datei von der Versionsverwaltung auf einen Server, der die Methode aufgerufen hat. \\
-		starteVerteilung(Konfig-Vorlage, Ü-Datei) & Damit wird die Erstellung der angereicherten Konfigurationsdatei gestartet. \\
-		sende(Konfig-Datei, Server) & Diese Methode versendet die Konfigurationsdatei an den entsprechend Server. \\
-		validieren(Konfig-Datei) & Überprüft die Konfigurationsdatei auf Syntax-Fehler. \\
-		hochladen(Konfig-Datei) & Lädt die Datei in \textsc{OpenShift}-Cluster hoch.\\
-		stelleBereit(für wen?, Datei) & Diese Methode schaltet die angegebene Datei für alle berechtigten Benutzerinnen auf dem Cluster frei.\\
-		setzeSichtbarkeit(Sichtbarkeit) & Veröffentlicht die Komponenten, die durch die Konfigurationsdatei beschrieben wurden. Damit ist der Verteilungsvorgang abgeschlossen.\\
-		abbruch(Fehlermeldung) & Bricht den Verteilungsprozess ab und gibt eine Fehlermeldung zurück.\\
-		
-		\bottomrule[1.5pt]
-	\end{tabular}
-	
-	\caption{Überblick über die verwendeten Methoden in Abbildung \vref{abb:prozessDeploymentCamunda}}
-	\label{tab:methodenFunktion}
-	
-\end{table*}
+	\caption{Überblick über die verwendeten Methoden in Abbildung \vref{abb:prozessDeploymentCamunda}}\label{tab:methodenFunktion}\\
+\end{longtable}
  
 \section{Ergebnis der Forschungsfrage eins}
 Die Ergebnisse der Forschungsfrage eins -- Wie können Container-Anwendungen den Prozess des automatisierten \enquote{Deployments} unterstützen? -- werden nachfolgend kurz zusammengefasst. Eine kritische Betrachtung des gesamten Ergebnisses der Bachelorarbeit ist im Epilog (siehe Kapitel \vref{kritischeBetrachtung}) zu finden.

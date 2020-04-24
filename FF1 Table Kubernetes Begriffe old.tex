@@ -74,3 +74,63 @@
 	\label{tab:zuordnungKompBau}
 	
 \end{table*}
+
+
+
+
+\begin{table*}[h!]
+	\centering
+	\ra{1.3} %more space beetween rules
+	
+	\begin{tabular}{@{}p{5.5cm}p{8.0cm}@{}}\toprule[1.5pt]
+		
+		\textbf{Methode} & \textbf{Beschreibung} \\ \midrule
+		% below rules with content
+
+		
+		push(Ü-Datei) & Veröffentlicht die Übergabedatei in der Versionsverwaltung. \\
+		holeDatei(Datei) & Lädt die angegebene Datei von der Versionsverwaltung auf einen Server, der die Methode aufgerufen hat. \\
+		starteVerteilung(Konfig-Vorlage, Ü-Datei) & Damit wird die Erstellung der angereicherten Konfigurationsdatei gestartet. \\
+		sende(Konfig-Datei, Server) & Diese Methode versendet die Konfigurationsdatei an den entsprechend Server. \\
+		validieren(Konfig-Datei) & Überprüft die Konfigurationsdatei auf Syntax-Fehler. \\
+		hochladen(Konfig-Datei) & Lädt die Datei in \textsc{OpenShift}-Cluster hoch.\\
+		stelleBereit(für wen?, Datei) & Diese Methode schaltet die angegebene Datei für alle berechtigten Benutzerinnen auf dem Cluster frei.\\
+		setzeSichtbarkeit(Sichtbarkeit) & Veröffentlicht die Komponenten, die durch die Konfigurationsdatei beschrieben wurden. Damit ist der Verteilungsvorgang abgeschlossen.\\
+		abbruch(Fehlermeldung) & Bricht den Verteilungsprozess ab und gibt eine Fehlermeldung zurück.\\
+		
+		\bottomrule[1.5pt]
+	\end{tabular}
+	
+	\caption{Überblick über die verwendeten Methoden in Abbildung \vref{abb:prozessDeploymentCamunda}}
+	\label{tab:methodenFunktion}
+	
+\end{table*}
+
+\begin{longtable}{@{}p{5.5cm}p{8.0cm}@{}}
+	\toprule[1.5pt]
+	\textbf{Methode} & \textbf{Beschreibung} \\* \midrule
+	\endfirsthead
+	%
+	\multicolumn{2}{c}%
+	{{\bfseries Tabelle \thetable\ von vorheriger Seite fortgeführt.}} \\
+	\toprule
+	\textbf{Methode} & \textbf{Beschreibung} \\* \midrule
+	\endhead
+	%
+	\bottomrule
+	\endfoot
+	%
+	\endlastfoot
+	%
+	push(Ü-Datei) & Veröffentlicht die Übergabedatei in der Versionsverwaltung. \\
+		holeDatei(Datei) & Lädt die angegebene Datei von der Versionsverwaltung auf einen Server, der die Methode aufgerufen hat. \\
+		starteVerteilung(Konfig-Vorlage, Ü-Datei) & Damit wird die Erstellung der angereicherten Konfigurationsdatei gestartet. \\
+		sende(Konfig-Datei, Server) & Diese Methode versendet die Konfigurationsdatei an den entsprechend Server. \\
+		validieren(Konfig-Datei) & Überprüft die Konfigurationsdatei auf Syntax-Fehler. \\
+		hochladen(Konfig-Datei) & Lädt die Datei in \textsc{OpenShift}-Cluster hoch.\\
+		stelleBereit(für wen?, Datei) & Diese Methode schaltet die angegebene Datei für alle berechtigten Benutzerinnen auf dem Cluster frei.\\
+		setzeSichtbarkeit(Sichtbarkeit) & Veröffentlicht die Komponenten, die durch die Konfigurationsdatei beschrieben wurden. Damit ist der Verteilungsvorgang abgeschlossen.\\
+		abbruch(Fehlermeldung) & Bricht den Verteilungsprozess ab und gibt eine Fehlermeldung zurück.\\* \bottomrule
+	
+	\caption{Überblick über die verwendeten Methoden in Abbildung \vref{abb:prozessDeploymentCamunda}}\label{tab:methodenFunktion}\\
+\end{longtable}
