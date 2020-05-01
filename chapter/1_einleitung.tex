@@ -1,6 +1,5 @@
 % reset memory of all acronyms, so \ac will print out full name of acronym!
 \acresetall 
-\hyphenation{An-wendungs-land-schaft} % because ngerman/babel doesn´t know it correctly... 
 
 \chapter{Einleitung}\label{kap:einleitung}
 \paragraph{Motivation der Arbeit}
@@ -41,9 +40,8 @@ Die Forschungsfragen, mit der sich diese Bachelorarbeit beschäftigen wird, sind
 	\item Welche wirtschaftlichen Vorteile hat der Einsatz von Containern auf den Prozess des automatisierten \enquote{Deployments}?
 	\item Welche besonderen sicherheitstechnischen Aspekte muss ein solcher Prozess im Bereich der Versicherung erfüllen?
 \end{enumerate}
-% TODO: Nachfolgende Absätze auf Richtigkeit prüfen
-Die Forschungsfrage eins wird einen Ist-Zustand analysieren. Diese Analyse enthält eine Betrachtung des Prozesses und einen Anforderungskatalog der Entwicklungsabteilungen an den zu konzeptionierenden \enquote{Deployment}-Prozess für Container-Anwendungen. Danach wird ein Konzept eines Container-basierten automatisierten \enquote{Deployment}-Prozesses erstellt, das aus der Entwicklung dieses und einer Standardisierung der beteiligten Dateien besteht. Die Forschungsfrage eins schließt mit einem Teilergebnis ab. \par
 
+Die Forschungsfrage eins wird einen Ist-Zustand analysieren. Diese Analyse enthält eine Betrachtung des Prozesses und einen Anforderungskatalog der Entwicklungsabteilungen an den zu konzeptionierenden \enquote{Deployment}-Prozess für Container-Anwendung-en. Danach wird ein Konzept eines Container-basierten automatisierten \enquote{Deployment}-Prozesses erstellt, das aus der Entwicklung dieses und einer Standardisierung der beteiligten Dateien besteht. Die Forschungsfrage eins schließt mit einem Teilergebnis ab. \par
 Die Forschungsfrage zwei beschäftigt sich mit den wirtschaftlichen Vorteil eines Einsatzes der Container auf den Prozess des automatisierten \enquote{Deployment}-Prozesses. Dabei wird der bestehende Geschäftsprozess \enquote{Release} analysiert und ein Ist-Soll-Vergleich der Methodik des \enquote{Business case} mit der Umsetzung im Unternehmen durchgeführt. Ein Ausblick schließt die Forschungsfrage zwei ab. 
 \par
 Die Forschungsfrage drei identifiziert sicherheitsrelevante Anforderungen, die nicht nur die Anwendung selbst betreffen, sondern Auswirkung auf die komplette Anwendungslandschaft (\acs{AWL}) haben. Diese Anforderungen werden durch das \acl{BSI} und verschiedene \textsc{DIN/ISO}-Normen beeinflusst. Außerdem soll analysiert werden, wie bei der Beschaffung von \enquote{Open source}- bzw. \enquote{Closed source}-Anwendungen mögliche Schwachstellen identifiziert werden, die potenzielle Angriffsvektoren in der \ac{AWL} eröffnen würden, und wie mit diesen verfahren wird. Dabei soll versucht werden Rückschlüsse auf die Anwendung \textsc{OpenShift} von \textsc{Red Hat\footnote{\enquote{Red Hat ist der weltweit führende Anbieter von Open-Source-Lösungen, die auf verlässlichen und leistungsstarken Technologien in den Bereichen \enquote{Cloud}, Virtualisierung, Storage, Linux, Mobile und Middleware basieren. Darüber hinaus bieten wir Support-, Trainings- und Consulting-Services an, die mehrfach prämiert wurden.} Quelle: \cite[][]{red_hat_inc_red_2020}}} zu ziehen. Auch hier wird ein Teilergebnis diese Forschungsfrage abschließen
@@ -55,8 +53,8 @@ Die Abteilung \ac{IE2}, die aus Sicht des unternehmensinternen Organigramms der 
 \paragraph{Aufbau der Arbeit}
 In Kapitel \vref{ff1} wird die Forschungsfrage eins behandelt. Diese beschreibt grundlegende Aspekte der Anforderungsanalyse, des \acl{Cloud-C} und der Container(-isierung)/Orchestrierung. Diese Grundlagen werden später benutzt, um das Vorgehen in diesem Kapitel nachvollziehbar zu gestalten. Die Anforderungsanalyse erkundet die Wünsche der Fachbereiche im Bezug auf die Verteilung von Container-Anwendungen und entwickelt daraus Anforderungen, die dem Stand der Wissenschaft genügen. Wichtig in diesem Kapitel ist die Entwicklung des Prozesses und die damit verbundene Beschreibung der Tätigkeiten.
 \par
-In Kapitel \vref{ff2} wird die Forschungsfrage zwei behandelt:
+In Kapitel \vref{ff2} wird die Forschungsfrage zwei behandelt: Diese beleuchtet die wirtschaftlichen Aspekte des \enquote{Deployment}-Prozesses, wie die Betrachtung des \enquote{Business case} als auch den Geschäftsprozess \enquote{Release} einer neuen Anwendung. Es wird die grundlegende Methodik dieser beiden Bereiche beschrieben, um diese auf die Analyse der genannten Prozesse zu übertragen. Es folgt darauf ein Soll-Ist-Vergleich zwischen der theoretischen Durchführung und der praktischen Umsetzung in der \ac{SV} bzw. \ac{SVI}.
 \par
-In Kapitel \vref{ff3} wird die Forschungsfrage drei behandelt: 
+In Kapitel \vref{ff3} wird die Forschungsfrage drei behandelt: Dieses illustriert Grundlagen zur Sicherheit in der Informationstechnik. Genauer werden die Vorkehrungen im Bereich der Finanz- und Versicherungsdienstleistung beleuchtet. Hier steht die ISO-Norm 27001 und das Kompendium des IT-Grundschutzes des \ac{BSI} im Fokus. Der Hauptteil dieser Fragestellung beschäftigt sich mit der Soll-Ist-Analyse von implementierten Sicherheitsvorkehrungen des Prozess der Forschungsfrage eins. Abschließend wird das Ergebnis dieser Forschungsfrage kritisch hinterfragt.
 \par
-In Kapitel \vref{kritischeBetrachtung} 
+In Kapitel \vref{kritischeBetrachtung} schließt diese Bachelorarbeit mit der Zusammenfassung der Teilergebnissen ab. Des Weiteren wird die Zielerreichung überprüft und die Ergebnisse werden kritisch hinterfragt. Abschließend fasst der Ausblick die erwähnte Kritik der drei Forschungsfragen nochmals zusammen. 
