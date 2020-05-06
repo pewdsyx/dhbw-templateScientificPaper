@@ -18,7 +18,7 @@ Ein Anforderungskatalog hat bestimmte Anforderungen, die an den Prozess gestellt
 	\item sortierbar/projizierbar (nach verschiedenen Kriterien, für verschiedene Stakeholder).
 \end{itemize}
 
-Die folgende Aufzählung beschreibt eine Vorlage für das Anforderungsdokument nach Quelle: Sie nutzt die Hilfsmittelsammlung \enquote{Volere}. Diese bietet im Themenbereich \enquote{requirements engineering} kostenpflichtig Dokumentenvorlagen an. Die beiden Bekanntesten sind die hier gezeigte \enquote{Volere Requirements Specification Template} und das kostenlose \enquote{Volere Atomic Requirement Template}, das umgangssprachlich \enquote{Snow Card} genannt wird. Die \enquote{Snow Card} (\vref{abb:volereSnowCard}) ist eine Karteikarte, die benutzt wird, um eine vollständige Aufnahme aller Informationen einer einzelnen Anforderung zu gewährleisten.\autocite[vgl.][]{VolereSnowCard} 
+Die folgende Aufzählung beschreibt eine Vorlage für das Anforderungsdokument nach Quelle: Sie nutzt die Hilfsmittelsammlung \enquote{Volere}. Diese bietet im Themenbereich \enquote{requirements engineering} kostenpflichtig Dokumentvorlagen an. Die beiden bekanntesten sind die hier gezeigte \enquote{Volere Requirements Specification Template} und das kostenlose \enquote{Volere Atomic Requirement Template}, das umgangssprachlich \enquote{Snow Card} genannt wird. Die \enquote{Snow Card} (\vref{abb:volereSnowCard}) ist eine Karteikarte, die benutzt wird, um eine vollständige Aufnahme aller Informationen einer einzelnen Anforderung zu gewährleisten.\autocite[vgl.][]{VolereSnowCard} 
 
 \begin{figure}[H]
 	\centering
@@ -109,7 +109,7 @@ Die folgende Liste wurde in Anlehnung an die Quelle \cite{VolereRequirmentsSpecT
 	%		{\scriptsize \textit{Alle Rechte, einschließlich der Vervielfältigung, Veröffentlichung, Bearbeitung und Übersetzung bleiben der SV Informatik GmbH vorbehalten.}}
 \end{figure}
 
-\section{Ergänzungen zum Kapitel Container, Containerisierung und Orchestrierung}
+\section{Ergänzungen zum Kapitel \ref{kap:container} Container, Containerisierung und Orchestrierung}
 
 \begin{figure}[H]
 	\centering
@@ -154,15 +154,15 @@ zu implementierenden Prozesses und die Nummer dient der besseren Identifizierbar
 		\textbf{Nummer} & \textbf{Klassifizierung} & \textbf{Anforderung} \\ \midrule
 		% below rules with content
 		
-		$A_{1}$ & hoch & Das System muss die Möglichkeit bieten, über eine korrekte Konfigurationsdatei, alle Komponenten der Anwendung zu verteilen.           \\
-		$A_{2}$ & mittel & Das System soll die Möglichkeit bieten über eine standardisierte Übergabedatei alle Umgebungsvariablen des Containers zu definieren. \\
-		$A_{3}$ & hoch & Das System muss die Möglichkeit bieten, über eine Validierung, konsistente Komponenten zu verteilen.\\
-		$A_{4}$ & hoch & Das System muss die Möglichkeit bieten unabhängig von dem Inhalt des Containers diesen zu verteilen.\\
-		$A_{5}$ & hoch & Das System muss fähig sein mit \textsc{OpenShift} über das \ac{API} zu kommunizieren. \\
-		$A_{6}$ & mittel & Das System soll fähig sein das \textsc{OpenShift}-Cluster zu jedem Zeitpunkt mit einem konsistenten Zustand zu verlassen. \\
-		$A_{7}$ & niedrig & Das System wird die Möglichkeit bieten die Verteilung von Komponenten zu unterbrechen. \\
-		$A_{8}$ & hoch & Das System muss die Möglichkeit bieten, über die Verteilungssoftware \textsc{Ara}, die Verteilung der Komponenten durchzuführen. \\
-		$A_{9}$ & hoch & Das System muss die Möglichkeit bieten automatisiert alle notwendigen Komponenten über die Konfigurationsdatei zu erkennen und zu verteilen. \\
+		$A_{1}$ & hoch & Das System muss die Möglichkeit bieten, über eine korrekte Konfigurationsdatei alle Komponenten der Anwendung zu verteilen.           \\
+		$A_{2}$ & mittel & Das System soll die Möglichkeit bieten, über eine standardisierte Übergabedatei alle Umgebungsvariablen des Containers zu definieren. \\
+		$A_{3}$ & hoch & Das System muss die Möglichkeit bieten, über eine Validierung konsistente Komponenten zu verteilen.\\
+		$A_{4}$ & hoch & Das System muss die Möglichkeit bieten, den Container unabhängig von dem Inhalt dessen zu verteilen.\\
+		$A_{5}$ & hoch & Das System muss fähig sein, mit \textsc{OpenShift} über das \ac{API} zu kommunizieren. \\
+		$A_{6}$ & mittel & Das System soll fähig sein, das \textsc{OpenShift}-Cluster zu jedem Zeitpunkt mit einem konsistenten Zustand zu verlassen. \\
+		$A_{7}$ & niedrig & Das System wird die Möglichkeit bieten, die Verteilung von Komponenten zu unterbrechen. \\
+		$A_{8}$ & hoch & Das System muss die Möglichkeit bieten, über die Verteilungssoftware \textsc{Ara} die Verteilung der Komponenten durchzuführen. \\
+		$A_{9}$ & hoch & Das System muss die Möglichkeit bieten, automatisiert alle notwendigen Komponenten über die Konfigurationsdatei zu erkennen und zu verteilen. \\
 		$A_{10}$ & hoch & Das System muss den gesetzlichen sowie sicherheitstechnischen Vorgaben entsprechen.\\
 		
 		\bottomrule[1.5pt]
@@ -184,7 +184,7 @@ zu implementierenden Prozesses und die Nummer dient der besseren Identifizierbar
 \section{Entwurf einer Konfigurationsdatei durch die Entwicklerinnen}
 \lstinputlisting[language=yaml, caption={Entwurf einer \enquote{Deployment}-Datei für \textsc{Camunda}}, label=lst:entwurfCamunda]{resources/listings/camundaReadyToBePublished.yaml}
 
-Dabei stellen alle Zeichenketten mit dem Muster \enquote{\textit{\$Bezeichner\_}} ein Platzhalter dar. Aus Gründen des Schutzes der Infrastruktur der \ac{SVI}/\ac{SV} ist es nicht gestattet die wirklichen Endpunkte der Webservices im Klartext abzubilden -- sie unterliegen dem Betriebsgeheimnis.
+Wobei stellen alle Zeichenketten mit dem Muster \enquote{\textit{\$Bezeichner\_}} einen Platzhalter dar. Aus Gründen des Schutzes der Infrastruktur der \ac{SVI}/\ac{SV} ist es nicht gestattet, die wirklichen Endpunkte der Webservices im Klartext abzubilden -- sie unterliegen dem Betriebsgeheimnis.
 
 \clearpage
 \section{Aufbau der zulässigen Wortfolgen der Übergabedatei}
@@ -227,7 +227,8 @@ In diesem Teil des Anhangs sind Ergänzungen zur Forschungsfrage zwei des Kapite
 	%		{\scriptsize \textit{Alle Rechte, einschließlich der Vervielfältigung, Veröffentlichung, Bearbeitung und Übersetzung bleiben der SV Informatik GmbH vorbehalten.}}
 \end{figure}
 
-\section{Vor- und Nachteile der internen beziehungsweise externen Erstellung eines \enquote{Business Case}}\label{appendixVorNachteileErstellungBC}
+\clearpage
+\section{Vor- und Nachteile der internen beziehungsweise externen Erstellung eines \enquote{Business Case}}\label{appendixVorNachteileErstellungBC} 
 
 \begin{table*}[h!]
 	\centering
@@ -278,7 +279,7 @@ In diesem Teil des Anhangs sind Ergänzungen zur Forschungsfrage zwei des Kapite
 	
 \end{table*}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.48]{img/chronoBC.pdf}
 	\caption{Chronologische Abfolge der Entwicklungsphase eines \enquote{Business Case}}
@@ -325,7 +326,7 @@ In diesem Teil des Anhangs sind Ergänzungen zur Forschungsfrage drei des Kapite
 		7 & Denken wir in Geschäftsprozessen und informationstechnischen Anwendungen? & $\square$ \\
 		8 & Ist der Anwendungsbereich des ISMS (Scope) zumindest grob
 		skizziert? & $\square$ \\
-		9 & Sind zumindest die Top Level Assets und deren Asset/Risk
+		9 & Sind zumindest die Top Level Assets und deren Asset und Risk
 		Owner erfasst worden? & $\square$ \\
 		10 & Wurden – zumindest grob – Sicherheitsziele für diese Assets
 		festgelegt? & $\square$ \\
@@ -351,7 +352,7 @@ In diesem Teil des Anhangs sind Ergänzungen zur Forschungsfrage drei des Kapite
 \end{figure}
 
 "Die Prozessbausteine, die in der Regel für sämtliche oder große Teile eines Informationsverbunds gleichermaßen
-gelten, unterteilen sich in die folgenden Schichten, die wiederum aus weiteren Teilschichten bestehen können.
+gelten, unterteilen sich in die folgenden Schichten, die wiederum aus weiteren Teilschichten bestehen können.[sic!]
 \begin{itemize}
 	\item Die Schicht ISMS enthält als Grundlage für alle weiteren Aktivitäten im Sicherheitsprozess den Baustein Sicherheitsmanagement.
 	\item Die Schicht ORP befasst sich mit organisatorischen und personellen Sicherheitsaspekten. In diese Schicht fallen beispielsweise die Bausteine Organisation und Personal.
@@ -360,20 +361,19 @@ gelten, unterteilen sich in die folgenden Schichten, die wiederum aus weiteren T
 	\item Die Schicht OPS umfasst alle Sicherheitsaspekte betrieblicher Art. Insbesondere sind dies die Sicherheitsaspekte des operativen IT-Betriebs, sowohl bei einem Betrieb im Haus, als auch bei einem IT-Betrieb, der in Teilen oder komplett durch Dritte betrieben wird. Ebenso enthält er die Sicherheitsaspekte, die bei einem IT-Betrieb für Dritte zu beachten sind. Beispiele für die Schicht OPS sind die Bausteine Schutz vor Schadprogrammen und Outsourcing für Kunden.
 	\item In der Schicht DER finden sich alle Bausteine, die für die Überprüfung der umgesetzten Sicherheitsmaßnahmen, die Detektion von Sicherheitsvorfällen sowie die geeigneten Reaktionen darauf relevant sind. Typische Bausteine der Schicht DER sind Behandlung von Sicherheitsvorfällen und Vorsorge für IT-Forensik.
 \end{itemize}
-Neben den Prozess-Bausteinen beinhaltet das IT-Grundschutz-Kompendium auch System-Bausteine. Diese werden
+Neben den Prozess-Bausteinen beinhaltet das IT-Grundschutz-Kompendium auch Sys-tem-Bausteine. Diese werden
 in der Regel auf einzelne Zielobjekte oder Gruppen von Zielobjekten angewendet. Die System-Bausteine unterteilen sich in die folgenden Schichten. Ähnlich wie die Prozess-Bausteine können auch die System-Bausteine aus weiteren Teilschichten bestehen.
 
 \begin{itemize}
 	\item Die Schicht APP beschäftigt sich mit der Absicherung von Anwendungen und Diensten, unter anderem in den
 	Bereichen Kommunikation, Verzeichnisdienste, netzbasierte Dienste sowie Business- und Client-Anwendungen.
-	Typische Bausteine der Schicht APP sind Allgemeine Groupware, Office-Produkte, Webserver und Relationale
-	Datenbanksysteme.
+	Typische Bausteine der Schicht APP sind Allgemeine Groupware, Office-Produkte, Webserver und Relationale [sic!] Datenbanksysteme.
 	\item Die Schicht SYS betrifft die einzelnen IT-Systeme des Informationsverbunds, die ggf. in Gruppen zusammengefasst wurden. Hier werden die Sicherheitsaspekte von Servern, Desktop-Systemen, Mobile Devices und sonstigen IT-Systemen wie Druckern und TK-Anlagen behandelt. Zur Schicht SYS gehören beispielsweise Bausteine zu
-	konkreten Betriebssystemen, Allgemeine Smartphones und Tablets sowie Drucker, Kopierer und Multifunktionsgeräte.
-	\item Die Schicht IND befasst sich mit Sicherheitsaspekten industrieller IT. In diese Schicht fallen beispielsweise die Bausteine Betriebs- und Steuerungstechnik, Allgemeine ICS-Komponente und Speicherprogrammierbare [sic!] Steuerung (SPS).
+	konkreten Betriebssystemen, Allgemeine [sic!] Smartphones und Tablets sowie Drucker, Kopierer und Multifunktionsgeräte.
+	\item Die Schicht IND befasst sich mit Sicherheitsaspekten industrieller IT. In diese Schicht fallen beispielsweise die Bausteine Betriebs- und Steuerungstechnik, Allgemeine [sic!] ICS-Komponente [sic!] und Speicherprogrammierbare [sic!] Steuerung (SPS).
 	\item Die Schicht NET betrachtet die Vernetzungsaspekte, die sich nicht primär auf bestimmte IT-Systeme, sondern
-	auf die Netzverbindungen und die Kommunikation beziehen. Dazu gehören zum Beispiel die Bausteine NetzManagement, Firewall und WLAN-Betrieb.
-	\item Die Schicht INF befasst sich mit den baulich-technischen Gegebenheiten, hier werden Aspekte der infrastrukturellen Sicherheit zusammengeführt. Dies betrifft unter anderem die Bausteine Allgemeines Gebäude und Rechenzentrum."\autocite[][S.\,23-24]{bundesamt_fur_sicherheit_in_der_informationstechnik_bsi_it-grundschutz-kompendium_2020}
+	auf die Netzverbindungen und die Kommunikation beziehen. Dazu gehören zum Beispiel die Bausteine NetzManagement [sic!], Firewall und WLAN-Betrieb.
+	\item Die Schicht INF befasst sich mit den baulich-technischen Gegebenheiten, hier werden Aspekte der infrastrukturellen Sicherheit zusammengeführt. Dies betrifft unter anderem die Bausteine Allgemeines [sic!] Gebäude und Rechenzentrum."\autocite[][S.\,23-24]{bundesamt_fur_sicherheit_in_der_informationstechnik_bsi_it-grundschutz-kompendium_2020}
 \end{itemize}
 
 
